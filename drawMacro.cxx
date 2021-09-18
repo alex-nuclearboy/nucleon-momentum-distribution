@@ -58,7 +58,8 @@ void drawMacro() {
   while (!feof(MomDistFile[0])) {
     i++;
     fscanf(MomDistFile[0],"%f %f\n",&Momentum[0],&Probability[0]);
-    MomentumDistribition[0]->SetPoint(i,Momentum[0],Probability[0]*4*TMath::Pi());
+    //MomentumDistribition[0]->SetPoint(i,Momentum[0],Probability[0]*4*TMath::Pi());
+    MomentumDistribition[0]->SetPoint(i,Momentum[0],Probability[0]);
   }
 
   MomentumDistribition[1] = new TGraph(); //CDBonn
@@ -66,7 +67,8 @@ void drawMacro() {
   while (!feof(MomDistFile[1])) {
     j++;
     fscanf(MomDistFile[1],"%f %f\n",&Momentum[1],&Probability[1]);
-    MomentumDistribition[1]->SetPoint(j,Momentum[1],Probability[1]*4*TMath::Pi());
+    //MomentumDistribition[1]->SetPoint(j,Momentum[1],Probability[1]*4*TMath::Pi());
+    MomentumDistribition[1]->SetPoint(j,Momentum[1],Probability[1]);
   }
 
   MomentumDistribition[2] = new TGraph(); //Chiral
@@ -74,7 +76,8 @@ void drawMacro() {
   while (!feof(MomDistFile[2])) {
     k++;
     fscanf(MomDistFile[2],"%f %f\n",&Momentum[2],&Probability[2]);
-    MomentumDistribition[2]->SetPoint(k,Momentum[2],Probability[2]*4*TMath::Pi());
+    //MomentumDistribition[2]->SetPoint(k,Momentum[2],Probability[2]*4*TMath::Pi());
+    MomentumDistribition[2]->SetPoint(k,Momentum[2],Probability[2]);
   }
 
   //N* inside 3He
@@ -114,7 +117,7 @@ void drawMacro() {
   gStyle->SetOptStat(kFALSE);
   gStyle->SetPalette(1,0);
   gStyle->SetOptStat(kFALSE);
-  gStyle->SetPadLeftMargin(0.13);
+  gStyle->SetPadLeftMargin(0.15);
   gStyle->SetPadRightMargin(0.1);
   gStyle->SetPadBottomMargin(0.15);
   gStyle->SetPadTopMargin(0.1);
@@ -127,15 +130,15 @@ void drawMacro() {
   //MomentumDistribition[0]->SetTitle("Fermi Momentum Distribition of Nucleons inside the Deuteron");
   MomentumDistribition[0]->GetXaxis()->SetTitle("p_{F} [GeV/c]");
   MomentumDistribition[0]->GetXaxis()->SetTitleSize(0.06);
-  MomentumDistribition[0]->GetXaxis()->SetTitleOffset(1.);
+  MomentumDistribition[0]->GetXaxis()->SetTitleOffset(1.0);
   MomentumDistribition[0]->GetXaxis()->SetLabelSize(0.05);
   MomentumDistribition[0]->GetXaxis()->SetRangeUser(0.,0.4);
   //MomentumDistribition[0]->GetYaxis()->SetTitle("probability density, c/GeV");
   MomentumDistribition[0]->GetYaxis()->SetTitle("4#piT(p_{F}) [c/GeV]");
   MomentumDistribition[0]->GetYaxis()->SetTitleSize(0.06);
-  MomentumDistribition[0]->GetYaxis()->SetTitleOffset(1.0);
+  MomentumDistribition[0]->GetYaxis()->SetTitleOffset(1.2);
   MomentumDistribition[0]->GetYaxis()->SetLabelSize(0.05);
-  //MomentumDistribition[0]->GetYaxis()->SetRangeUser(0.,0.012);
+  MomentumDistribition[0]->GetYaxis()->SetRangeUser(0.,0.012);
 
   MomentumDistribition[0]->SetLineStyle(1);
   MomentumDistribition[0]->SetLineWidth(2);
@@ -167,15 +170,15 @@ void drawMacro() {
 
   MomentumDistribition[0]->GetXaxis()->SetTitle("p_{F} [GeV/c]");
   MomentumDistribition[0]->GetXaxis()->SetTitleSize(0.06);
-  MomentumDistribition[0]->GetXaxis()->SetTitleOffset(1.);
+  MomentumDistribition[0]->GetXaxis()->SetTitleOffset(1.0);
   MomentumDistribition[0]->GetXaxis()->SetLabelSize(0.05);
   MomentumDistribition[0]->GetXaxis()->SetRangeUser(0.,0.4);
   MomentumDistribition[0]->GetYaxis()->SetTitle("\\hbox{gęstość prawdop. [c/GeV]}");
   //MomentumDistribition[0]->GetYaxis()->SetTitle("4#piT(p_{F}), c/GeV");
   MomentumDistribition[0]->GetYaxis()->SetTitleSize(0.06);
-  MomentumDistribition[0]->GetYaxis()->SetTitleOffset(1.0);
+  MomentumDistribition[0]->GetYaxis()->SetTitleOffset(1.2);
   MomentumDistribition[0]->GetYaxis()->SetLabelSize(0.05);
-  //MomentumDistribition[0]->GetYaxis()->SetRangeUser(0.,0.012);
+  MomentumDistribition[0]->GetYaxis()->SetRangeUser(0.,0.012);
 
   MomentumDistribition[0]->SetLineStyle(1);
   MomentumDistribition[0]->SetLineWidth(2);
@@ -210,6 +213,11 @@ void drawMacro() {
 
   MyCanvas[1]->Print("output/plots/FermiMomDistr_d_pl.png","png");
   MyCanvas[1]->Print("output/plots/FermiMomDistr_d_pl.eps","eps");
+
+  gStyle->SetPadLeftMargin(0.13);
+  gStyle->SetPadRightMargin(0.1);
+  gStyle->SetPadBottomMargin(0.15);
+  gStyle->SetPadTopMargin(0.1);
 
   //
   MyCanvas[2] = new TCanvas;
@@ -282,12 +290,12 @@ void drawMacro() {
 
   MomentumDistribition[4]->SetLineStyle(1);
   MomentumDistribition[4]->SetLineWidth(2);
-  MomentumDistribition[4]->SetLineColor(kTeal-6);
+  MomentumDistribition[4]->SetLineColor(kAzure-2);
   MomentumDistribition[4]->Draw("same");
 
   MomentumDistribition[5]->SetLineStyle(1);
   MomentumDistribition[5]->SetLineWidth(2);
-  MomentumDistribition[5]->SetLineColor(kAzure-2);
+  MomentumDistribition[5]->SetLineColor(kTeal-6);
   MomentumDistribition[5]->Draw("same");
 
   MomentumDistribition[6]->SetLineStyle(2);
@@ -305,7 +313,7 @@ void drawMacro() {
   MyLegend[3]->AddEntry(MomentumDistribition[5], "E_{N*-d} = -0.74 MeV" , "l");
   MyLegend[3]->Draw();
 
-  MyCanvas[3]->Print("output/plots/FermiMomDistr_3He_pl.png","png");
-  MyCanvas[3]->Print("output/plots/FermiMomDistr_3He_pl.eps","eps");
+  MyCanvas[3]->Print("output/plots/FermiMomDistr_N_p.png","png");
+  MyCanvas[3]->Print("output/plots/FermiMomDistr_N_p.eps","eps");
 
 }
