@@ -153,7 +153,7 @@ void drawMacro() {
   MomentumDistribition[2]->SetLineStyle(1);
   MomentumDistribition[2]->SetLineWidth(2);
   MomentumDistribition[2]->SetLineColor(kTeal-6);
-  //MomentumDistribition[2]->Draw("same");
+  MomentumDistribition[2]->Draw("same");
 
   MyLegend[0] = new TLegend(0.560, 0.750, 0.885, 0.885);
   MyLegend[0]->SetFillStyle(1); MyLegend[0]->SetFillColor(0); MyLegend[0]->SetLineColor(0); MyLegend[0]->SetTextSize(0.04);
