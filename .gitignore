@@ -34,4 +34,10 @@
 # Output files
 *.eps
 *.png
+momentum_distr*.txt
 FermiMomDistr_*.dat
+*.root
+
+# CMake folder
+build/
+
