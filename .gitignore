@@ -30,12 +30,12 @@
 *.exe
 *.out
 *.app
+fermi_momentum_distr
 
 # Output files
 *.eps
 *.png
-momentum_distr*.txt
-FermiMomDistr_*.dat
+*_momentum_distribution.txt
 *.root
 
 # CMake folder

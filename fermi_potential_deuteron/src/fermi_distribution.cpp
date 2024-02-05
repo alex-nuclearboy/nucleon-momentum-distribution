@@ -12,8 +12,8 @@
 
 FermiDistributionCalculator::FermiDistributionCalculator() {}
 
-void FermiDistributionCalculator::normalizeCoefficients(std::vector<double>& c, std::vector<double>& d, std::vector<double>& m2) {
-
+void FermiDistributionCalculator::normalizeCoefficients(std::vector<double>& c, std::vector<double>& d, std::vector<double>& m2) 
+{
     int n = c.size();
 
     for (int i = 0; i < n - 1; i++) {c[n - 1] -= c[i];}
@@ -43,14 +43,10 @@ void FermiDistributionCalculator::normalizeCoefficients(std::vector<double>& c, 
     }
 }
 
-void FermiDistributionCalculator::calculate(std::ofstream& out_file, double alpha, double m_0, std::vector<double>& c, std::vector<double>& d) {
-    // Adapted to use params.alpha and params.coefficients in calculations
-    const double sqrtpi2 = 0.7978845608; // Square root of 2/PI
-    
-    const double conversion = 0.197327;  // Conversion factor for momentum (GeV/c to fm^-1)
-    const int steps = 400; // Number of steps from 0 to 0.4 GeV/c
-    const double dp = 0.4 / steps; // Increment in momentum per step
-    double p[401], r[401], f_p[401]; // Arrays for momentum, reduced momentum, and momentum distribution
+void FermiDistributionCalculator::calculate(std::ofstream& out_file, double alpha, double m_0, std::vector<double>& c, std::vector<double>& d) 
+{
+    const double dp = max_momentum / steps; // Increment in momentum per step
+    double p[steps + 1], r[steps + 1], f_p[steps + 1]; // Arrays for momentum, reduced momentum, and momentum distribution
     double norm = 0; // Normalization constant
     
     int n = c.size();
@@ -98,7 +94,7 @@ void FermiDistributionCalculator::generate_plot(const std::string& model_name, c
 {
     std::ifstream in_file(data_file);
     if (!in_file.is_open()) {
-        std::cerr << "Failed to open the data file for reading: " << data_file << std::endl;
+        std::cerr << "Error: Failed to open the data file for reading: " << data_file << std::endl;
         return;
     }
 
@@ -139,7 +135,7 @@ void FermiDistributionCalculator::generate_combined_plot(const nlohmann::json& m
 
         std::ifstream in_file(data_file);
         if (!in_file.is_open()) {
-            std::cerr << "Failed to open the data file for reading: " << data_file << std::endl;
+            std::cerr << "Error: Failed to open the data file for reading: " << data_file << std::endl;
             continue; // Skip this model if the file can't be opened
         }
 
