@@ -1,12 +1,14 @@
-// fermi_distribution_calculator.cpp
-#include "fermi_distribution_calculator.h"
+// fermi_distribution.cpp
+#include "fermi_distribution.h"
+#include <fstream>
 #include <iostream>
 #include <cmath>
 #include <vector>
-#include <numeric>
 #include "TGraph.h"
 #include "TCanvas.h"
 #include "TAxis.h"
+#include "TLegend.h"
+#include "TMultiGraph.h"
 
 FermiDistributionCalculator::FermiDistributionCalculator() {}
 
@@ -41,7 +43,7 @@ void FermiDistributionCalculator::normalizeCoefficients(std::vector<double>& c, 
     }
 }
 
-void FermiDistributionCalculator::calculate(std::ofstream& out_file, double alpha, std::vector<double>& c, std::vector<double>& d) {
+void FermiDistributionCalculator::calculate(std::ofstream& out_file, double alpha, double m_0, std::vector<double>& c, std::vector<double>& d) {
     // Adapted to use params.alpha and params.coefficients in calculations
     const double sqrtpi2 = 0.7978845608; // Square root of 2/PI
     
@@ -55,7 +57,7 @@ void FermiDistributionCalculator::calculate(std::ofstream& out_file, double alph
 
     std::vector<double> m(n), m2(n);
         for (int i = 0; i < n; i++) {
-            m[i] = alpha + i;
+            m[i] = alpha + i * m_0;            
             m2[i] = m[i] * m[i];
         }
 
@@ -92,15 +94,14 @@ void FermiDistributionCalculator::calculate(std::ofstream& out_file, double alph
 
 }
 
-void FermiDistributionCalculator::generate_plot() {
-    // Plotting implementation using ROOT as in the provided content
-    // Load data from the file
-    std::ifstream in_file("data/cdbonn_momentum_distribution.txt");
+void FermiDistributionCalculator::generate_plot(const std::string& model_name, const std::string& data_file, const std::string& plot_file) 
+{
+    std::ifstream in_file(data_file);
     if (!in_file.is_open()) {
-        std::cerr << "Failed to open the data file for reading." << std::endl;
+        std::cerr << "Failed to open the data file for reading: " << data_file << std::endl;
         return;
     }
-    
+
     std::vector<double> momentum;
     std::vector<double> density;
     double p, d;
@@ -111,18 +112,59 @@ void FermiDistributionCalculator::generate_plot() {
     }
     in_file.close();
     
-    // Prepare the TGraph
-    int n_points = momentum.size();
-    TGraph* graph = new TGraph(n_points, &momentum[0], &density[0]);
-    graph->SetTitle("Fermi Momentum Distribution (Paris model);Momentum (GeV/c);Probability Density (normalized)");
+    // Prepare the TGraph    
+    TGraph* graph = new TGraph(momentum.size(), &momentum[0], &density[0]);
+    graph->SetTitle(("Fermi Momentum Distribution (" + model_name + " potential);Momentum (GeV/c);Probability Density").c_str());
     graph->SetMarkerStyle(20);
+    graph->SetMarkerSize(0.7);
     graph->SetDrawOption("AP");
     
     // Create a TCanvas and draw the TGraph
-    TCanvas* canvas = new TCanvas("c1", "Fermi Momentum Distribution", 800, 600);
+    TCanvas* canvas = new TCanvas("c1", model_name.c_str(), 800, 600);
     graph->Draw("APL");
     
     // Save the plot
-    canvas->SaveAs("plots/distribution.root"); // For ROOT file
-    canvas->SaveAs("plots/distribution.png");  // For PNG file
+    canvas->SaveAs(plot_file.c_str());
+    delete canvas; // Clean up
+}
+
+void FermiDistributionCalculator::generate_combined_plot(const nlohmann::json& models, const std::string& combined_plot_file) 
+{
+    TMultiGraph *mg = new TMultiGraph();
+    TLegend *legend = new TLegend(0.7, 0.7, 0.9, 0.9);
+
+    for (const auto& model : models) {
+        std::string model_name = model["name"];
+        std::string data_file = "data/" + model_name + "_momentum_distribution.txt";
+
+        std::ifstream in_file(data_file);
+        if (!in_file.is_open()) {
+            std::cerr << "Failed to open the data file for reading: " << data_file << std::endl;
+            continue; // Skip this model if the file can't be opened
+        }
+
+        std::vector<double> momentum;
+        std::vector<double> density;
+        double p, d;
+        while (in_file >> p >> d) {
+            momentum.push_back(p);
+            density.push_back(d);
+        }
+        in_file.close();
+
+        TGraph* graph = new TGraph(momentum.size(), momentum.data(), density.data());
+        graph->SetTitle(model_name.c_str());
+        graph->SetLineColor(1 + &model - &models[0]); // Different marker for each model
+        //graph->SetMarkerStyle(1 + &model - &models[0]); // Different marker for each model
+        mg->Add(graph);
+        legend->AddEntry(graph, (model_name + " potential").c_str(), "lp");
+    }
+
+    TCanvas *canvas = new TCanvas("c2", "Combined Fermi Momentum Distribution", 800, 600);
+    mg->Draw("ALP");
+    mg->SetTitle("Fermi Momentum Distribution;Momentum (GeV/c);Probability Density");
+    legend->Draw();
+
+    canvas->SaveAs(combined_plot_file.c_str());
+    delete canvas; // Clean up
 }
