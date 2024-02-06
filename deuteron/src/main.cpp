@@ -15,11 +15,11 @@
  */
 
 
-#include "fermi_distribution.h"
+#include "../include/momentum_distribution.h"
+#include "../include/json.hpp"
 #include <fstream>
 #include <iostream>
 #include <vector>
-#include "json.hpp"
 
 using json = nlohmann::json;
 

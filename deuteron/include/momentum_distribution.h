@@ -1,6 +1,5 @@
-// fermi_distribution.h
-#ifndef FERMI_DISTRIBUTION_H
-#define FERMI_DISTRIBUTION_H
+#ifndef MOMENTUM_DISTRIBUTION_H
+#define MOMENTUM_DISTRIBUTION_H
 
 #include <fstream>
 #include <vector>
@@ -67,4 +66,4 @@ private:
     void NormalizeCoefficients(std::vector<double>& c, std::vector<double>& d, std::vector<double>& m2);
 };
 
-#endif // FERMI_DISTRIBUTION_H
+#endif // MOMENTUM_DISTRIBUTION_H

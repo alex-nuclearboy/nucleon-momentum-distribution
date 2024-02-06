@@ -1,4 +1,4 @@
-#include "fermi_distribution.h"
+#include "../include/momentum_distribution.h"
 #include <fstream>
 #include <iostream>
 #include <cmath>
@@ -86,7 +86,7 @@ void DistributionCalculator::CalculateDistribution(std::ofstream& out_file, doub
         out_file << p[i] << "\t" << f_p[i] << std::endl;
     }
     
-    std::cout << "Momentum distribution calculation completed and saved." << std::endl;
+    std::cout << "Momentum distribution calculation completed and saved to file." << std::endl;
 
 }
 

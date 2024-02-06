@@ -38,7 +38,7 @@ cd ..
 
 ## Outputs
 
-The software generates output files, including calculated momentum distribution data in txt format and associated graphs in png`format. 
+The software generates output files, including calculated momentum distribution data in txt format and associated graphs in png format. 
 These files can be found in the `data` and `plots` directories, respectively.
 
 ## References

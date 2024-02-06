@@ -11,7 +11,7 @@ include_directories(${PROJECT_SOURCE_DIR}/include)
 # Source files
 set(SOURCES
     src/main.cpp
-    src/fermi_distribution.cpp
+    src/momentum_distribution.cpp
 )
 
 # Add executable
