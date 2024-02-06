@@ -13,12 +13,12 @@
  * and generate plots for individual models as well as a combined plot for all models.
  */
 
-class DistributionCalculator {
+class MomentumDistributionCalculator {
 public:
     /**
      * @brief Constructs a new Distribution Calculator object.
      */
-    DistributionCalculator();
+    MomentumDistributionCalculator();
     
     /**
      * @brief Calculates the momentum distribution and writes the result to a file.

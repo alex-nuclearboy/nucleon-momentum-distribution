@@ -9,9 +9,9 @@
 #include "TLegend.h"
 #include "TMultiGraph.h"
 
-DistributionCalculator::DistributionCalculator() {}
+MomentumDistributionCalculator::MomentumDistributionCalculator() {}
 
-void DistributionCalculator::NormalizeCoefficients(std::vector<double>& c, std::vector<double>& d, std::vector<double>& m2) 
+void MomentumDistributionCalculator::NormalizeCoefficients(std::vector<double>& c, std::vector<double>& d, std::vector<double>& m2) 
 {
     int n = c.size();
 
@@ -43,7 +43,7 @@ void DistributionCalculator::NormalizeCoefficients(std::vector<double>& c, std::
     }
 }
 
-void DistributionCalculator::CalculateDistribution(std::ofstream& out_file, double alpha, double m_0, std::vector<double>& c, std::vector<double>& d) 
+void MomentumDistributionCalculator::CalculateDistribution(std::ofstream& out_file, double alpha, double m_0, std::vector<double>& c, std::vector<double>& d) 
 {
     const double dp = max_momentum / steps; // Increment in momentum per step
     double p[steps + 1], r[steps + 1], f_p[steps + 1]; // Arrays for momentum, reduced momentum, and momentum distribution
@@ -90,7 +90,7 @@ void DistributionCalculator::CalculateDistribution(std::ofstream& out_file, doub
 
 }
 
-void DistributionCalculator::GenerateSinglePlot(const std::string& model_name, const std::string& data_file, const std::string& plot_file) 
+void MomentumDistributionCalculator::GenerateSinglePlot(const std::string& model_name, const std::string& data_file, const std::string& plot_file) 
 {
     std::ifstream in_file(data_file);
     if (!in_file.is_open()) {
@@ -124,7 +124,7 @@ void DistributionCalculator::GenerateSinglePlot(const std::string& model_name, c
     delete canvas; // Clean up
 }
 
-void DistributionCalculator::GenerateCombinedPlot(const nlohmann::json& models, const std::string& combined_plot_file) 
+void MomentumDistributionCalculator::GenerateCombinedPlot(const nlohmann::json& models, const std::string& combined_plot_file) 
 {
     TMultiGraph *mg = new TMultiGraph();
     TLegend *legend = new TLegend(0.7, 0.7, 0.9, 0.9);

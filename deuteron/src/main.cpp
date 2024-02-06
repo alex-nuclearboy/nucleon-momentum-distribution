@@ -35,7 +35,7 @@ int main() {
     json_file >> model_params;
     json_file.close();
 
-    DistributionCalculator distribution;
+    MomentumDistributionCalculator distribution;
 
     // Process each model defined in the JSON configuration.
     for (const auto& model : model_params["models"]) {

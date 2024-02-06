@@ -1,7 +1,6 @@
-# Nucleon Momentum Distribution in a Deuteron
+# Nucleon Momentum Distribution
 
-This repository provides the C++ source code for calculating the momentum distribution of nucleons inside a deuteron. 
-The calculations incorporate parameters from the [Paris](https://doi.org/10.1016/0370-2693(81)90659-6) and the [charge-dependent Bonn](https://doi.org/10.1103/PhysRevC.63.024001) nucleon-nucleon potentials.
+This repository provides the source code for calculating the momentum distribution of nucleons within a deuteron using various nucleon-nucleon potential models, including the [Paris](https://doi.org/10.1016/0370-2693(81)90659-6) and the [charge-dependent Bonn (CD-Bonn)](https://doi.org/10.1103/PhysRevC.63.024001) potentials. It features a C++ implementation with a focus on accurate scientific computation, efficient data handling, and visualization of results through ROOT-based plotting.
 
 ## Software Dependencies
 
