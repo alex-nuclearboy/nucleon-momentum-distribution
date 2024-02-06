@@ -1,4 +1,3 @@
-// fermi_distribution.cpp
 #include "fermi_distribution.h"
 #include <fstream>
 #include <iostream>
@@ -10,12 +9,13 @@
 #include "TLegend.h"
 #include "TMultiGraph.h"
 
-FermiDistributionCalculator::FermiDistributionCalculator() {}
+DistributionCalculator::DistributionCalculator() {}
 
-void FermiDistributionCalculator::normalizeCoefficients(std::vector<double>& c, std::vector<double>& d, std::vector<double>& m2) 
+void DistributionCalculator::NormalizeCoefficients(std::vector<double>& c, std::vector<double>& d, std::vector<double>& m2) 
 {
     int n = c.size();
 
+    // Calculate the last 'c' coefficient
     for (int i = 0; i < n - 1; i++) {c[n - 1] -= c[i];}
 
     int n2 = n - 3;
@@ -31,7 +31,7 @@ void FermiDistributionCalculator::normalizeCoefficients(std::vector<double>& c, 
         sum3 += d[j] * m2[j];
     }
     
-    // Loop to calculate the last three coefficients
+    // Loop to calculate the last three 'd' coefficients
     for (int i = 0; i < 3; ++i) {
         // Normalize the current d coefficient
         d[n2] = -m2[n1] * m2[n0] * sum1 + (m2[n1] + m2[n0]) * sum2 - sum3;
@@ -43,7 +43,7 @@ void FermiDistributionCalculator::normalizeCoefficients(std::vector<double>& c, 
     }
 }
 
-void FermiDistributionCalculator::calculate(std::ofstream& out_file, double alpha, double m_0, std::vector<double>& c, std::vector<double>& d) 
+void DistributionCalculator::CalculateDistribution(std::ofstream& out_file, double alpha, double m_0, std::vector<double>& c, std::vector<double>& d) 
 {
     const double dp = max_momentum / steps; // Increment in momentum per step
     double p[steps + 1], r[steps + 1], f_p[steps + 1]; // Arrays for momentum, reduced momentum, and momentum distribution
@@ -57,7 +57,7 @@ void FermiDistributionCalculator::calculate(std::ofstream& out_file, double alph
             m2[i] = m[i] * m[i];
         }
 
-    normalizeCoefficients(c, d, m2);
+    NormalizeCoefficients(c, d, m2);
 
     for (int j = 0; j <= steps; ++j) {
 
@@ -90,7 +90,7 @@ void FermiDistributionCalculator::calculate(std::ofstream& out_file, double alph
 
 }
 
-void FermiDistributionCalculator::generate_plot(const std::string& model_name, const std::string& data_file, const std::string& plot_file) 
+void DistributionCalculator::GenerateSinglePlot(const std::string& model_name, const std::string& data_file, const std::string& plot_file) 
 {
     std::ifstream in_file(data_file);
     if (!in_file.is_open()) {
@@ -110,7 +110,7 @@ void FermiDistributionCalculator::generate_plot(const std::string& model_name, c
     
     // Prepare the TGraph    
     TGraph* graph = new TGraph(momentum.size(), &momentum[0], &density[0]);
-    graph->SetTitle(("Fermi Momentum Distribution (" + model_name + " potential);Momentum (GeV/c);Probability Density").c_str());
+    graph->SetTitle(("Nucleon Momentum Distribution (" + model_name + " potential);Momentum (GeV/c);Probability Density").c_str());
     graph->SetMarkerStyle(20);
     graph->SetMarkerSize(0.7);
     graph->SetDrawOption("AP");
@@ -124,7 +124,7 @@ void FermiDistributionCalculator::generate_plot(const std::string& model_name, c
     delete canvas; // Clean up
 }
 
-void FermiDistributionCalculator::generate_combined_plot(const nlohmann::json& models, const std::string& combined_plot_file) 
+void DistributionCalculator::GenerateCombinedPlot(const nlohmann::json& models, const std::string& combined_plot_file) 
 {
     TMultiGraph *mg = new TMultiGraph();
     TLegend *legend = new TLegend(0.7, 0.7, 0.9, 0.9);

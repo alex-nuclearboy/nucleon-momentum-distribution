@@ -30,7 +30,7 @@
 *.exe
 *.out
 *.app
-fermi_momentum_distr
+momentum_distribution
 
 # Output files
 *.eps
@@ -40,4 +40,3 @@ fermi_momentum_distr
 
 # CMake folder
 build/
-

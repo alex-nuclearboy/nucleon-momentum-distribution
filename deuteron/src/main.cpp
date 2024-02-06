@@ -1,15 +1,19 @@
 /**
- * File:         main.cpp
- * Author:       Aleksander Khreptak <aleksander.khreptak@alumni.uj.edu.pl>
- * Created:      02 Feb 2024
- * Last updated: 05 Feb 2024
+ * @file main.cpp
+ * @brief Main program entry point for calculation of momentum distribution 
+ *        of nucleons inside a deuteron. 
  * 
- * Description:
- * Main program entry point.
- * Loads model parameters from a JSON configuration file,
- * calculates the Fermi nucleon momentum distribution for each model,
+ * This file loads potential model parameters from a JSON configuration file,
+ * calculates the nucleon momentum distribution for each model,
  * and generates output files and plots for each.
+ *
+ * @author Name
+ * @date 02 Feb 2024
+ * @last_updated 06 Feb 2024
+ *
+ * @license This code is licensed under the GNU General Public License version 3.0.
  */
+
 
 #include "fermi_distribution.h"
 #include <fstream>
@@ -31,7 +35,7 @@ int main() {
     json_file >> model_params;
     json_file.close();
 
-    FermiDistributionCalculator calculator;
+    DistributionCalculator distribution;
 
     // Process each model defined in the JSON configuration.
     for (const auto& model : model_params["models"]) {
@@ -49,15 +53,15 @@ int main() {
         }
 
         // Perform the calculation and generate output.        
-        calculator.calculate(out_file, alpha, m_0, c, d);
+        distribution.CalculateDistribution(out_file, alpha, m_0, c, d);
         out_file.close();
 
         // Generate a plot for the current model's distribution.
-        calculator.generate_plot(model_name, "data/" + model_name + "_momentum_distribution.txt", "plots/" + model_name + "_distribution.png");
+        distribution.GenerateSinglePlot(model_name, "data/" + model_name + "_momentum_distribution.txt", "plots/" + model_name + "_distribution.png");
     }
 
     // Generate a combined plot for all models.
-    calculator.generate_combined_plot(model_params["models"], "plots/combined_distribution.png");
+    distribution.GenerateCombinedPlot(model_params["models"], "plots/combined_distribution.png");
 
     return 0;
 }
