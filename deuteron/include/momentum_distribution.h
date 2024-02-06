@@ -7,12 +7,10 @@
 #include "json.hpp"
 
 /**
- * @brief Class to calculate nucleon momentum distributions inside deuteron for various N-N potential models.
- * 
- * This class provides functionality to normalize coefficients, calculate momentum distributions,
- * and generate plots for individual models as well as a combined plot for all models.
+ * @class MomentumDistributionCalculator
+ * @brief Class to calculate nucleon momentum distributions inside deuteron 
+ *        for various N-N potential models.
  */
-
 class MomentumDistributionCalculator {
 public:
     /**

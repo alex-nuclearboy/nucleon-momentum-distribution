@@ -1,3 +1,21 @@
+/**
+ * @file momentum_distribution.cpp
+ * @brief Implementation for the MomentumDistributionCalculator class.
+ * 
+ * This class is responsible for calculating the momentum distribution of nucleons
+ * inside a deuteron. It uses potential models specified in a JSON configuration 
+ * file to perform the calculations and outputs the results to data files.
+ * Additionally, it generates graphical plots to visually represent the momentum 
+ * distribution for each model.
+ * 
+ * @author Aleksander Khreptak
+ * @email aleksander.khreptak@alumni.uj.edu.pl
+ * @date 02 Feb 2024
+ * @last_updated 06 Feb 2024
+ *
+ * @license This code is licensed under the GNU General Public License version 3.0.
+ */
+
 #include "../include/momentum_distribution.h"
 #include <fstream>
 #include <iostream>

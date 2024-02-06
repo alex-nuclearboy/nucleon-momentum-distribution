@@ -7,13 +7,13 @@
  * calculates the nucleon momentum distribution for each model,
  * and generates output files and plots for each.
  *
- * @author Name
+ * @author Aleksander Khreptak
+ * @email aleksander.khreptak@alumni.uj.edu.pl
  * @date 02 Feb 2024
  * @last_updated 06 Feb 2024
  *
  * @license This code is licensed under the GNU General Public License version 3.0.
  */
-
 
 #include "../include/momentum_distribution.h"
 #include "../include/json.hpp"
