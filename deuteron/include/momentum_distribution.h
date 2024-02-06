@@ -1,5 +1,5 @@
-#ifndef MOMENTUM_DISTRIBUTION_H
-#define MOMENTUM_DISTRIBUTION_H
+#ifndef DEUTERON_MOMENTUM_DISTRIBUTION_H_
+#define DEUTERON_MOMENTUM_DISTRIBUTION_H_
 
 #include <fstream>
 #include <vector>
@@ -66,4 +66,4 @@ private:
     void NormalizeCoefficients(std::vector<double>& c, std::vector<double>& d, std::vector<double>& m2);
 };
 
-#endif // MOMENTUM_DISTRIBUTION_H
+#endif // DEUTERON_MOMENTUM_DISTRIBUTION_H_
