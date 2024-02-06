@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.10)
 project(NucleonMomentumDistribution VERSION 2.0)
 
-set(CMAKE_CXX_STANDARD 17) # Use C++17 standard
+set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
@@ -19,7 +19,7 @@ add_executable(momentum_distribution ${SOURCES})
 
 # Set the Vdt directory
 set(VDT_INCLUDE_DIR "$ENV{ROOTSYS}/include")
-set(VDT_LIBRARY "$ENV{ROOTSYS}/lib/libvdt.so") # Example
+set(VDT_LIBRARY "$ENV{ROOTSYS}/lib/libvdt.so")
 include_directories(${VDT_INCLUDE_DIR})
 
 # Find ROOT
