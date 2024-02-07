@@ -31,7 +31,7 @@
 *.out
 *.app
 momentum_distribution
-HeliumMomentumDist
+helium_momentum_distribution
 convert
 
 # Output files

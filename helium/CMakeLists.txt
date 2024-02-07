@@ -11,12 +11,12 @@ include_directories(${PROJECT_SOURCE_DIR}/include)
 # Source files
 set(SOURCES
     src/main.cpp
-    src/MomentumDataLoader.cpp
-    src/GraphGenerator.cpp
+    src/momentum_data_loader.cpp
+    src/plot_generator.cpp
 )
 
 # Add executable
-add_executable(HeliumMomentumDist ${SOURCES})
+add_executable(helium_momentum_distribution ${SOURCES})
 
 # Set the Vdt directory
 set(VDT_INCLUDE_DIR "$ENV{ROOTSYS}/include")
@@ -25,7 +25,7 @@ include_directories(${VDT_INCLUDE_DIR})
 
 # Find ROOT
 find_package(ROOT REQUIRED COMPONENTS Graf Gpad)
-target_link_libraries(HeliumMomentumDist ${ROOT_LIBRARIES})
+target_link_libraries(helium_momentum_distribution ${ROOT_LIBRARIES})
 
 # Set the path to your custom Findnlohmann_json.cmake script
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake")
