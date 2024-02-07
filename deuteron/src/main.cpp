@@ -1,21 +1,23 @@
 /**
  * @file main.cpp
+ * @author AK <alex.nuclearboy@gmail.com>
  * @brief Main program entry point for calculation of momentum distribution 
- *        of nucleons inside a deuteron. 
+ *        of nucleons inside a deuteron.
  * 
+ * @details * 
  * This file loads potential model parameters from a JSON configuration file,
  * calculates the nucleon momentum distribution for each model,
  * and generates output files and plots for each.
+ * 
+ * @version 2.0 
+ * @date 2024-02-02
+ * @note Last updated on 2024-02-07
  *
- * @author Aleksander Khreptak
- * @email aleksander.khreptak@alumni.uj.edu.pl
- * @date 02 Feb 2024
- * @last_updated 06 Feb 2024
- *
- * @license This code is licensed under the GNU General Public License version 3.0.
+ * @remark This code is licensed under the GNU General Public License version 3.0 (GPLv3).
  */
 
 #include "../include/momentum_distribution.h"
+#include "../include/plot_generator.h"
 #include "../include/json.hpp"
 #include <fstream>
 #include <iostream>
@@ -35,7 +37,9 @@ int main() {
     json_file >> model_params;
     json_file.close();
 
-    MomentumDistributionCalculator distribution;
+    MomentumDistributionCalculator calculator;
+    PlotGenerator generator;
+    
 
     // Process each model defined in the JSON configuration.
     for (const auto& model : model_params["models"]) {
@@ -53,15 +57,15 @@ int main() {
         }
 
         // Perform the calculation and generate output.        
-        distribution.CalculateDistribution(out_file, alpha, m_0, c, d);
+        calculator.CalculateDistribution(out_file, alpha, m_0, c, d);
         out_file.close();
 
         // Generate a plot for the current model's distribution.
-        distribution.GenerateSinglePlot(model_name, "data/" + model_name + "_momentum_distribution.txt", "plots/" + model_name + "_distribution.png");
+        generator.GenerateSinglePlot(model_name, "data/" + model_name + "_momentum_distribution.txt", "plots/" + model_name + "_distribution.png");
     }
 
     // Generate a combined plot for all models.
-    distribution.GenerateCombinedPlot(model_params["models"], "plots/combined_distribution.png");
+    generator.GenerateCombinedPlot(model_params["models"], "plots/combined_distribution.png");
 
     return 0;
 }

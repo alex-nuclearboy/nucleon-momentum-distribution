@@ -12,6 +12,7 @@ include_directories(${PROJECT_SOURCE_DIR}/include)
 set(SOURCES
     src/main.cpp
     src/momentum_distribution.cpp
+    src/plot_generator.cpp
 )
 
 # Add executable
