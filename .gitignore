@@ -30,9 +30,8 @@
 *.exe
 *.out
 *.app
-momentum_distribution
+deuteron_momentum_distribution
 helium_momentum_distribution
-convert
 
 # Output files
 *.eps

@@ -1,21 +1,24 @@
 /**
  * @file momentum_distribution.cpp
  * @author AK <alex.nuclearboy@gmail.com>
- * @brief Implementation for the MomentumDistributionCalculator class.
+ * @brief Implemention MomentumDistributionCalculator class for calculations of 
+ *        nucleon momentum distribution inside a deuteron based on various 
+ *        nucleon-nucleon potential models.
  * 
  * @details
- * This class is responsible for calculating the momentum distribution of nucleons
- * inside a deuteron. It uses potential models specified in a JSON configuration 
- * file to perform the calculations and outputs the results to data files.
- * 
+ * The MomentumDistributionCalculator class calculates the momentum distribution 
+ * of nucleons within a deuteron, considering various nucleon-nucleon potential models. 
+ * The class uses potential model parameters specified in a JSON configuration file, 
+ * performing calculations that are then output to data files for further analysis 
+ * and visualization.
+ *
  * @version 2.0
  * @date 2024-02-02
- * @note Last updated on 2024-02-07
- *
- * @remark This code is licensed under the GNU General Public License version 3.0 (GPLv3).
+ * @note Last updated on 2024-02-08
+ * @remark Licensed under the GNU General Public License version 3.0 (GPLv3).
  */
 
-#include "../include/momentum_distribution.h"
+#include "../include/deuteron/momentum_distribution.h"
 #include <fstream>
 #include <iostream>
 #include <cmath>
@@ -23,7 +26,11 @@
 
 MomentumDistributionCalculator::MomentumDistributionCalculator() {}
 
-void MomentumDistributionCalculator::NormalizeCoefficients(std::vector<double>& c, std::vector<double>& d, std::vector<double>& m2) 
+/**
+ * Normalizes the coefficients used in the momentum distribution calculation.
+*/
+void MomentumDistributionCalculator::NormalizeCoefficients(
+    std::vector<double>& c, std::vector<double>& d, std::vector<double>& m2) 
 {
     int n = c.size();
 
@@ -55,7 +62,15 @@ void MomentumDistributionCalculator::NormalizeCoefficients(std::vector<double>& 
     }
 }
 
-void MomentumDistributionCalculator::CalculateDistribution(std::ofstream& out_file, double alpha, double m_0, std::vector<double>& c, std::vector<double>& d) 
+/**
+ * Calculates the momentum distribution of nucleons within a deuteron for a given 
+ * potential model. This function computes the distribution by applying the specified 
+ * model parameters, including the 'c' and 'd' coefficients that have been normalized 
+ * by `NormalizeCoefficients`. It then outputs the calculated distribution to a file.
+ */
+void MomentumDistributionCalculator::CalculateDistribution(
+    std::ofstream& out_file, double alpha, double m_0, 
+    std::vector<double>& c, std::vector<double>& d) 
 {
     const double dp = max_momentum / steps; // Increment in momentum per step
     double p[steps + 1], r[steps + 1], f_p[steps + 1]; // Arrays for momentum, reduced momentum, and momentum distribution
@@ -98,6 +113,7 @@ void MomentumDistributionCalculator::CalculateDistribution(std::ofstream& out_fi
         out_file << p[i] << "\t" << f_p[i] << std::endl;
     }
     
-    std::cout << "Momentum distribution calculation completed and saved to file." << std::endl;
+    std::cout << "Momentum distribution calculation completed and saved to file." 
+              << std::endl;
 
 }
