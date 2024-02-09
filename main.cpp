@@ -51,7 +51,7 @@ int main() {
     }
 
     // Generate a combined plot for all models.
-    generator_d.GenerateCombinedPlot(model_params["models"], "plots/combined_distribution_he.png");
+    generator_d.GenerateCombinedPlot(model_params["models"], "plots/combined_distribution_deuteron.png");
 
     #endif // DEUTERON
 
@@ -102,7 +102,7 @@ int main() {
         all_data_sets.push_back({momenta, probabilities});
     }
 
-    std::string output_file_path = "plots/combined_momentum_distribution.png";
+    std::string output_file_path = "plots/combined_momentum_distribution_helium.png";
     generator_he.GenerateCombinedPlot(all_data_sets, output_file_path);
 
     #endif // HELIUM
