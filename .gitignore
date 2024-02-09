@@ -37,6 +37,7 @@ helium_momentum_distribution
 *.eps
 *.png
 *_momentum_distribution.txt
+mom_distr_*_converted.txt
 *.root
 
 # CMake folder
