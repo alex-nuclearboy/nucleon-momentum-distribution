@@ -1,0 +1,54 @@
+\chapter{Nucleon and N\texorpdfstring{$\ast$}{*} Resonance Momentum Distribution Analysis}
+\hypertarget{md_README}{}\label{md_README}\index{Nucleon and N\texorpdfstring{$\ast$}{*} Resonance Momentum Distribution Analysis@{Nucleon and N\texorpdfstring{$\ast$}{*} Resonance Momentum Distribution Analysis}}
+\label{md_README_autotoc_md0}%
+\Hypertarget{md_README_autotoc_md0}%
+ Key Features · Software Dependencies · Environment Setup · Compilation and Execution · Outputs · References · License
+
+This repository provides analytical tools for investigating the momentum distribution of nucleons within a deuteron as well as the momentum distribution of the N\texorpdfstring{$\ast$}{*}(1535) resonance within the \textsuperscript{3}He nucleus.
+
+It uses different nucleon-\/nucleon interaction models, specifically the Paris \mbox{[}\href{https://doi.org/10.1016/0370-2693(81)90659-6}{\texttt{ 1}}\mbox{]} and the charge-\/dependent Bonn (CD-\/\+Bonn) \mbox{[}\href{https://doi.org/10.1103/PhysRevC.63.024001}{\texttt{ 2}}\mbox{]} potentials, to calculate and visually represent the nucleon momentum distribution in a deuteron. The process is streamlined by the software automatically processing model parameters provided in a JSON configuration file, resulting in both numerical data and graphical representations of the momentum distributions.
+
+Additionally, the repository includes the tool for graphical representation of the momentum distribution of the N\texorpdfstring{$\ast$}{*} resonance within the \textsuperscript{3}He nucleus, considered as a bound system of the resonance and a deuteron. This analysis is based on the theoretical work of Kelkar {\itshape et al.} \mbox{[}\href{https://doi.org/10.1142/S0218301319500666}{\texttt{ 3}}\mbox{]}, \mbox{[}\href{https://doi.org/10.1016/j.nuclphysa.2020.121698}{\texttt{ 4}}\mbox{]}, in which the N\texorpdfstring{$\ast$}{*} momentum distribution is evaluated for various sets of coupling constants corresponding to binding energies E\textsubscript{N\texorpdfstring{$\ast$}{*}-\/d} = -\/0.\+33, -\/0.\+53, and -\/0.\+74 MeV. Comparing these distributions with the proton momentum distribution in \textsuperscript{3}He yields insights into exotic nuclear states\textquotesingle{} structure and dynamics.\hypertarget{md_README_autotoc_md1}{}\doxysection{\texorpdfstring{Key Features}{Key Features}}\label{md_README_autotoc_md1}
+
+\begin{DoxyItemize}
+\item {\bfseries{Deuteron Analysis\+:}} Uses Paris \mbox{[}\href{https://doi.org/10.1016/0370-2693(81)90659-6}{\texttt{ 1}}\mbox{]} and CD-\/\+Bonn \mbox{[}\href{https://doi.org/10.1103/PhysRevC.63.024001}{\texttt{ 2}}\mbox{]} nucleon-\/nucleon potentials for calculations of nucleon momentum distribution in a deuteron, derived from parameters specified in a JSON configuration file.
+\item \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}\+N\texorpdfstring{$\ast$}{*}(1535) Resonance in \textsuperscript{3}He\+:\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} The tool converts N\texorpdfstring{$\ast$}{*} momentum values from fm\textsuperscript{-\/1} to Ge\+V/c and normalises the distribution, facilitating the visualisation of the N\texorpdfstring{$\ast$}{*} momentum distribution within the \textsuperscript{3}He nucleus. Additionally, it provides comparative visualisations of proton momentum distributions in \textsuperscript{3}He.
+\end{DoxyItemize}\hypertarget{md_README_autotoc_md2}{}\doxysection{\texorpdfstring{Software Dependencies}{Software Dependencies}}\label{md_README_autotoc_md2}
+The codebase is built upon the \href{https://root.cern}{\texttt{ ROOT}} data analysis framework, renowned for its powerful processing and visualisation capabilities in particle physics and beyond. Additionally, the project includes the {\ttfamily \doxylink{json_8hpp}{json.\+hpp}} header from the \href{https://github.com/nlohmann/json}{\texttt{ nlohmann/json}} library, located in the {\ttfamily include} directory for JSON parsing.\hypertarget{md_README_autotoc_md3}{}\doxysection{\texorpdfstring{Environment Setup}{Environment Setup}}\label{md_README_autotoc_md3}
+Before compiling and running the application, ensure that the {\ttfamily ROOTSYS} environment variable is correctly set to the ROOT framework\textquotesingle{}s installation directory.\hypertarget{md_README_autotoc_md4}{}\doxysection{\texorpdfstring{Compilation and Execution}{Compilation and Execution}}\label{md_README_autotoc_md4}
+To build and execute the calculations, execute the following commands\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\#\ Clone\ the\ repository\ to\ your\ local\ machine}
+\DoxyCodeLine{git\ clone\ https://github.com/alex-\/nuclearboy/nucleon-\/momentum-\/distribution.git}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\ Navigate\ to\ the\ repository\ directory}
+\DoxyCodeLine{cd\ nucleon-\/momentum-\/distribution}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\ Create\ a\ build\ directory\ and\ navigate\ into\ it}
+\DoxyCodeLine{mkdir\ build\ \&\&\ cd\ build}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\ Use\ CMake\ to\ configure\ and\ build\ the\ project:}
+\DoxyCodeLine{cmake\ ..\ \&\&\ make}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\ Return\ to\ the\ project\ root\ directory}
+\DoxyCodeLine{cd\ ..}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\ Execute\ the\ generated\ binaries}
+\DoxyCodeLine{./deuteron\_momentum\_distribution}
+\DoxyCodeLine{./helium\_momentum\_distribution}
+
+\end{DoxyCode}
+\hypertarget{md_README_autotoc_md5}{}\doxysection{\texorpdfstring{Outputs}{Outputs}}\label{md_README_autotoc_md5}
+The software produces text files detailing nucleon momentum distributions in a deuteron and text files with the N\texorpdfstring{$\ast$}{*} resonance\textquotesingle{}s momentum distributions in \textsuperscript{3}He, converted from from fm\textsuperscript{-\/1} to Ge\+V/ and normalised. These files are saved in the {\ttfamily data} folder. Graphical outputs are stored as images in the {\ttfamily plots} folder.\hypertarget{md_README_autotoc_md6}{}\doxysection{\texorpdfstring{References}{References}}\label{md_README_autotoc_md6}
+\mbox{[}1\mbox{]} M. Lacombe {\itshape et al.}, "{}\+Parametrization of the deuteron wave function of the Paris N-\/\+N potential"{}. {\itshape Phys. Lett. B} {\bfseries{101}} (1981) 139-\/140. \href{https://doi.org/10.1016/0370-2693(81)90659-6}{\texttt{ DOI\+: 10.\+1016/0370-\/2693(81)90659-\/6}}.
+
+\mbox{[}2\mbox{]} R. Machleidt, "{}\+The high-\/precision, charge-\/dependent Bonn nucleon-\/nucleon potential"{}. {\itshape Phys. Rev. C} {\bfseries{63}} (2000) 024001. \href{https://doi.org/10.1103/PhysRevC.63.024001}{\texttt{ DOI\+: 10.\+1103/\+Phys\+RevC.63.\+024001}}.
+
+\mbox{[}3\mbox{]} N. G. Kelkar {\itshape et al.}, "{}\+N-\/\+N-\/\+N\textbackslash{}\texorpdfstring{$\ast$}{*} model calculations for experimental η-\/mesic $<$sup$>$3$<$/sup$>$\+He searches"{}. {\itshape Int. Jour. Mod. Phys. E} {\bfseries{28}} (2019) 1950066. \href{https://doi.org/10.1142/S0218301319500666}{\texttt{ DOI\+: 10.\+1142/\+S0218301319500666}}.
+
+\mbox{[}4\mbox{]} N. G. Kelkar {\itshape et al.}, "{}\+Study of the N\textbackslash{}\texorpdfstring{$\ast$}{*} momentum distribution for experimental η-\/mesic $<$sup$>$3$<$/sup$>$\+He searches"{}. {\itshape Nucl. Phys. A} {\bfseries{996}} (2020) 121698. \href{https://doi.org/10.1016/j.nuclphysa.2020.121698}{\texttt{ DOI\+: 10.\+1016/j.nuclphysa.\+2020.\+121698}}.\hypertarget{md_README_autotoc_md7}{}\doxysection{\texorpdfstring{License}{License}}\label{md_README_autotoc_md7}
+This project is distributed under the \href{https://www.gnu.org/licenses/gpl-3.0.en.html}{\texttt{ GNU General Public License version 3.\+0 (GPL-\/3.\+0)}}. For details, please refer to the LICENSE file.
+
+Back to Top 

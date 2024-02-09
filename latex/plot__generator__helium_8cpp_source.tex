@@ -1,0 +1,41 @@
+\doxysection{plot\+\_\+generator\+\_\+helium.\+cpp}
+\hypertarget{plot__generator__helium_8cpp_source}{}\label{plot__generator__helium_8cpp_source}\index{src/helium/plot\_generator\_helium.cpp@{src/helium/plot\_generator\_helium.cpp}}
+\mbox{\hyperlink{plot__generator__helium_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{plot__generator__helium_8cpp_source_l00001}00001\ }
+\DoxyCodeLine{\Hypertarget{plot__generator__helium_8cpp_source_l00020}00020\ \textcolor{preprocessor}{\#include\ "{}../include/helium/plot\_generator\_helium.h"{}}}
+\DoxyCodeLine{\Hypertarget{plot__generator__helium_8cpp_source_l00021}00021\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{\Hypertarget{plot__generator__helium_8cpp_source_l00022}00022\ \textcolor{preprocessor}{\#include\ <TCanvas.h>}}
+\DoxyCodeLine{\Hypertarget{plot__generator__helium_8cpp_source_l00023}00023\ \textcolor{preprocessor}{\#include\ <TGraph.h>}}
+\DoxyCodeLine{\Hypertarget{plot__generator__helium_8cpp_source_l00024}00024\ \textcolor{preprocessor}{\#include\ <TAxis.h>}}
+\DoxyCodeLine{\Hypertarget{plot__generator__helium_8cpp_source_l00025}00025\ \textcolor{preprocessor}{\#include\ <TLegend.h>}}
+\DoxyCodeLine{\Hypertarget{plot__generator__helium_8cpp_source_l00026}00026\ }
+\DoxyCodeLine{\Hypertarget{plot__generator__helium_8cpp_source_l00031}\mbox{\hyperlink{classPlotGeneratorHelium_a2e572152a1bb108ab46fe0cfd0215254}{00031}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classPlotGeneratorHelium_a2e572152a1bb108ab46fe0cfd0215254}{PlotGeneratorHelium::GenerateCombinedPlot}}(}
+\DoxyCodeLine{\Hypertarget{plot__generator__helium_8cpp_source_l00032}00032\ \ \ \ \ \textcolor{keyword}{const}\ std::vector<std::pair<std::vector<float>,\ }
+\DoxyCodeLine{\Hypertarget{plot__generator__helium_8cpp_source_l00033}00033\ \ \ \ \ std::vector<float>>>\&\ data\_sets,\ }
+\DoxyCodeLine{\Hypertarget{plot__generator__helium_8cpp_source_l00034}00034\ \ \ \ \ \textcolor{keyword}{const}\ std::string\&\ output\_file\_path)\ }
+\DoxyCodeLine{\Hypertarget{plot__generator__helium_8cpp_source_l00035}00035\ \{}
+\DoxyCodeLine{\Hypertarget{plot__generator__helium_8cpp_source_l00036}00036\ \ \ \ \ \textcolor{keyword}{auto}*\ canvas\ =\ \textcolor{keyword}{new}\ TCanvas(\textcolor{stringliteral}{"{}canvas"{}},\ \textcolor{stringliteral}{"{}Momentum\ Distribution"{}},\ 800,\ 600);}
+\DoxyCodeLine{\Hypertarget{plot__generator__helium_8cpp_source_l00037}00037\ \ \ \ \ TLegend\ legend(0.7,\ 0.7,\ 0.9,\ 0.9);}
+\DoxyCodeLine{\Hypertarget{plot__generator__helium_8cpp_source_l00038}00038\ }
+\DoxyCodeLine{\Hypertarget{plot__generator__helium_8cpp_source_l00039}00039\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ data\_sets.size();\ ++i)\ \{}
+\DoxyCodeLine{\Hypertarget{plot__generator__helium_8cpp_source_l00040}00040\ \ \ \ \ \ \ \ \ TGraph*\ graph\ =\ \textcolor{keyword}{new}\ TGraph(data\_sets[i].first.size(),\ }
+\DoxyCodeLine{\Hypertarget{plot__generator__helium_8cpp_source_l00041}00041\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ data\_sets[i].first.data(),\ }
+\DoxyCodeLine{\Hypertarget{plot__generator__helium_8cpp_source_l00042}00042\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ data\_sets[i].second.data()}
+\DoxyCodeLine{\Hypertarget{plot__generator__helium_8cpp_source_l00043}00043\ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{\Hypertarget{plot__generator__helium_8cpp_source_l00044}00044\ }
+\DoxyCodeLine{\Hypertarget{plot__generator__helium_8cpp_source_l00045}00045\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Customize\ each\ graph's\ appearance}}
+\DoxyCodeLine{\Hypertarget{plot__generator__helium_8cpp_source_l00046}00046\ \ \ \ \ \ \ \ \ graph-\/>SetLineColor(i\ +\ 1);\ \textcolor{comment}{//\ Change\ line\ color\ for\ each\ graph}}
+\DoxyCodeLine{\Hypertarget{plot__generator__helium_8cpp_source_l00047}00047\ \ \ \ \ \ \ \ \ graph-\/>GetXaxis()-\/>SetRangeUser(0.,\ 0.4);}
+\DoxyCodeLine{\Hypertarget{plot__generator__helium_8cpp_source_l00048}00048\ \ \ \ \ \ \ \ \ graph-\/>Draw(i\ ==\ 0\ ?\ \textcolor{stringliteral}{"{}AL"{}}\ :\ \textcolor{stringliteral}{"{}L"{}});\ \textcolor{comment}{//\ Draw\ the\ first\ graph\ with\ axis,\ subsequent\ graphs\ on\ top}}
+\DoxyCodeLine{\Hypertarget{plot__generator__helium_8cpp_source_l00049}00049\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{plot__generator__helium_8cpp_source_l00050}00050\ \ \ \ \ \ \ \ \ legend.AddEntry(graph,\ (\textcolor{stringliteral}{"{}DataSet\ "{}}\ +\ std::to\_string(i)).c\_str(),\ \textcolor{stringliteral}{"{}l"{}});}
+\DoxyCodeLine{\Hypertarget{plot__generator__helium_8cpp_source_l00051}00051\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{plot__generator__helium_8cpp_source_l00052}00052\ }
+\DoxyCodeLine{\Hypertarget{plot__generator__helium_8cpp_source_l00053}00053\ \ \ \ \ legend.Draw();}
+\DoxyCodeLine{\Hypertarget{plot__generator__helium_8cpp_source_l00054}00054\ \ \ \ \ canvas-\/>SaveAs(output\_file\_path.c\_str());}
+\DoxyCodeLine{\Hypertarget{plot__generator__helium_8cpp_source_l00055}00055\ }
+\DoxyCodeLine{\Hypertarget{plot__generator__helium_8cpp_source_l00056}00056\ \ \ \ \ \textcolor{keyword}{delete}\ canvas;\ \textcolor{comment}{//\ Clean\ up}}
+\DoxyCodeLine{\Hypertarget{plot__generator__helium_8cpp_source_l00057}00057\ \}}
+
+\end{DoxyCode}

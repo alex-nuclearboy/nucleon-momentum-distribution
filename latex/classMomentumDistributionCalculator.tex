@@ -1,0 +1,80 @@
+\doxysection{Momentum\+Distribution\+Calculator Class Reference}
+\hypertarget{classMomentumDistributionCalculator}{}\label{classMomentumDistributionCalculator}\index{MomentumDistributionCalculator@{MomentumDistributionCalculator}}
+
+
+Calculates the momentum distribution of nucleons within a deuteron for using various nucleon-\/nucleon potential models.  
+
+
+
+
+{\ttfamily \#include $<$momentum\+\_\+distribution.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classMomentumDistributionCalculator_aaf104c3572ee0af3ba1763d559ef6f1d}{Momentum\+Distribution\+Calculator}} ()
+\begin{DoxyCompactList}\small\item\em Default constructor for initializing the \doxylink{classMomentumDistributionCalculator}{Momentum\+Distribution\+Calculator} object. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classMomentumDistributionCalculator_a8a18bf4ba122e8d1057b86fe1efb530d}{Calculate\+Distribution}} (std\+::ofstream \&out\+\_\+file, double alpha, double m\+\_\+0, std\+::vector$<$ double $>$ \&c, std\+::vector$<$ double $>$ \&d)
+\begin{DoxyCompactList}\small\item\em Calculates the momentum distribution for nucleons inside a deuteron and outputs the results to a specified file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Calculates the momentum distribution of nucleons within a deuteron for using various nucleon-\/nucleon potential models. 
+
+This class provides the functionality to calculate and analyze the momentum distribution of nucleons inside a deuteron. It supports multiple potential models, allowing for an in-\/depth comparison of theoretical predictions. 
+
+Definition at line \mbox{\hyperlink{momentum__distribution_8h_source_l00018}{18}} of file \mbox{\hyperlink{momentum__distribution_8h_source}{momentum\+\_\+distribution.\+h}}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classMomentumDistributionCalculator_aaf104c3572ee0af3ba1763d559ef6f1d}\label{classMomentumDistributionCalculator_aaf104c3572ee0af3ba1763d559ef6f1d} 
+\index{MomentumDistributionCalculator@{MomentumDistributionCalculator}!MomentumDistributionCalculator@{MomentumDistributionCalculator}}
+\index{MomentumDistributionCalculator@{MomentumDistributionCalculator}!MomentumDistributionCalculator@{MomentumDistributionCalculator}}
+\doxysubsubsection{\texorpdfstring{MomentumDistributionCalculator()}{MomentumDistributionCalculator()}}
+{\footnotesize\ttfamily Momentum\+Distribution\+Calculator\+::\+Momentum\+Distribution\+Calculator (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Default constructor for initializing the \doxylink{classMomentumDistributionCalculator}{Momentum\+Distribution\+Calculator} object. 
+
+
+
+Definition at line \mbox{\hyperlink{momentum__distribution_8cpp_source_l00027}{27}} of file \mbox{\hyperlink{momentum__distribution_8cpp_source}{momentum\+\_\+distribution.\+cpp}}.
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classMomentumDistributionCalculator_a8a18bf4ba122e8d1057b86fe1efb530d}\label{classMomentumDistributionCalculator_a8a18bf4ba122e8d1057b86fe1efb530d} 
+\index{MomentumDistributionCalculator@{MomentumDistributionCalculator}!CalculateDistribution@{CalculateDistribution}}
+\index{CalculateDistribution@{CalculateDistribution}!MomentumDistributionCalculator@{MomentumDistributionCalculator}}
+\doxysubsubsection{\texorpdfstring{CalculateDistribution()}{CalculateDistribution()}}
+{\footnotesize\ttfamily void Momentum\+Distribution\+Calculator\+::\+Calculate\+Distribution (\begin{DoxyParamCaption}\item[{std\+::ofstream \&}]{out\+\_\+file,  }\item[{double}]{alpha,  }\item[{double}]{m\+\_\+0,  }\item[{std\+::vector$<$ double $>$ \&}]{c,  }\item[{std\+::vector$<$ double $>$ \&}]{d }\end{DoxyParamCaption})}
+
+
+
+Calculates the momentum distribution for nucleons inside a deuteron and outputs the results to a specified file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em out\+\_\+file} & Reference to an ofstream object for writing the distribution data. \\
+\hline
+{\em alpha} & Alpha parameter defining the baseline mass scale for the potential model. \\
+\hline
+{\em m\+\_\+0} & Mass coefficient for the model. \\
+\hline
+{\em c} & Vector containing coefficients \textquotesingle{}c\textquotesingle{} for the potential model calculation. \\
+\hline
+{\em d} & Vector containing coefficients \textquotesingle{}d\textquotesingle{} for the potential model calculation.\\
+\hline
+\end{DoxyParams}
+Calculates the momentum distribution of nucleons within a deuteron for a given potential model. This function computes the distribution by applying the specified model parameters, including the \textquotesingle{}c\textquotesingle{} and \textquotesingle{}d\textquotesingle{} coefficients that have been normalized by {\ttfamily Normalize\+Coefficients}. It then outputs the calculated distribution to a file. 
+
+Definition at line \mbox{\hyperlink{momentum__distribution_8cpp_source_l00071}{71}} of file \mbox{\hyperlink{momentum__distribution_8cpp_source}{momentum\+\_\+distribution.\+cpp}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/deuteron/\mbox{\hyperlink{momentum__distribution_8h}{momentum\+\_\+distribution.\+h}}\item 
+src/deuteron/\mbox{\hyperlink{momentum__distribution_8cpp}{momentum\+\_\+distribution.\+cpp}}\end{DoxyCompactItemize}

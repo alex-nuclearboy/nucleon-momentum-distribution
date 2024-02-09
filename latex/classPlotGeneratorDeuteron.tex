@@ -1,0 +1,95 @@
+\doxysection{Plot\+Generator\+Deuteron Class Reference}
+\hypertarget{classPlotGeneratorDeuteron}{}\label{classPlotGeneratorDeuteron}\index{PlotGeneratorDeuteron@{PlotGeneratorDeuteron}}
+
+
+Facilitates the creation of plots to visualize momentum distributions of nucleons within a deuteron.  
+
+
+
+
+{\ttfamily \#include $<$plot\+\_\+generator\+\_\+deuteron.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classPlotGeneratorDeuteron_a36f41ee705c08eee6fcff082c0dc6f6e}{Plot\+Generator\+Deuteron}} ()
+\item 
+void \mbox{\hyperlink{classPlotGeneratorDeuteron_a2f5911b26f832e713d25ba67f15fd67b}{Generate\+Single\+Plot}} (const std\+::string \&model\+\_\+name, const std\+::string \&data\+\_\+file, const std\+::string \&plot\+\_\+file)
+\begin{DoxyCompactList}\small\item\em Generates a plot for the momentum distribution of a single potential model. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classPlotGeneratorDeuteron_ac901a0b96353458d46118aeaf0705b3b}{Generate\+Combined\+Plot}} (const nlohmann\+::json \&models, const std\+::string \&combined\+\_\+plot\+\_\+file)
+\begin{DoxyCompactList}\small\item\em Creates a combined plot for the momentum distributions derived from all specified models. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Facilitates the creation of plots to visualize momentum distributions of nucleons within a deuteron. 
+
+This class is designed to generate graphical representations for the momentum distributions of nucleons inside a deuteron, based on various nucleon-\/nucleon potential models. 
+
+Definition at line \mbox{\hyperlink{plot__generator__deuteron_8h_source_l00018}{18}} of file \mbox{\hyperlink{plot__generator__deuteron_8h_source}{plot\+\_\+generator\+\_\+deuteron.\+h}}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classPlotGeneratorDeuteron_a36f41ee705c08eee6fcff082c0dc6f6e}\label{classPlotGeneratorDeuteron_a36f41ee705c08eee6fcff082c0dc6f6e} 
+\index{PlotGeneratorDeuteron@{PlotGeneratorDeuteron}!PlotGeneratorDeuteron@{PlotGeneratorDeuteron}}
+\index{PlotGeneratorDeuteron@{PlotGeneratorDeuteron}!PlotGeneratorDeuteron@{PlotGeneratorDeuteron}}
+\doxysubsubsection{\texorpdfstring{PlotGeneratorDeuteron()}{PlotGeneratorDeuteron()}}
+{\footnotesize\ttfamily Plot\+Generator\+Deuteron\+::\+Plot\+Generator\+Deuteron (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Default constructor for initializing the \doxylink{classPlotGeneratorDeuteron}{Plot\+Generator\+Deuteron} object. 
+
+Definition at line \mbox{\hyperlink{plot__generator__deuteron_8cpp_source_l00029}{29}} of file \mbox{\hyperlink{plot__generator__deuteron_8cpp_source}{plot\+\_\+generator\+\_\+deuteron.\+cpp}}.
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classPlotGeneratorDeuteron_ac901a0b96353458d46118aeaf0705b3b}\label{classPlotGeneratorDeuteron_ac901a0b96353458d46118aeaf0705b3b} 
+\index{PlotGeneratorDeuteron@{PlotGeneratorDeuteron}!GenerateCombinedPlot@{GenerateCombinedPlot}}
+\index{GenerateCombinedPlot@{GenerateCombinedPlot}!PlotGeneratorDeuteron@{PlotGeneratorDeuteron}}
+\doxysubsubsection{\texorpdfstring{GenerateCombinedPlot()}{GenerateCombinedPlot()}}
+{\footnotesize\ttfamily void Plot\+Generator\+Deuteron\+::\+Generate\+Combined\+Plot (\begin{DoxyParamCaption}\item[{const nlohmann\+::json \&}]{models,  }\item[{const std\+::string \&}]{combined\+\_\+plot\+\_\+file }\end{DoxyParamCaption})}
+
+
+
+Creates a combined plot for the momentum distributions derived from all specified models. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em models} & JSON object containing data for each model to be included in the plot. \\
+\hline
+{\em combined\+\_\+plot\+\_\+file} & Path where the combined plot will be saved.\\
+\hline
+\end{DoxyParams}
+Combines momentum distribution data from multiple potential models into a single plot. This function facilitates the visual comparison of nucleon momentum distributions calculated using different nucleon-\/nucleon potentials. 
+
+Definition at line \mbox{\hyperlink{plot__generator__deuteron_8cpp_source_l00080}{80}} of file \mbox{\hyperlink{plot__generator__deuteron_8cpp_source}{plot\+\_\+generator\+\_\+deuteron.\+cpp}}.
+
+\Hypertarget{classPlotGeneratorDeuteron_a2f5911b26f832e713d25ba67f15fd67b}\label{classPlotGeneratorDeuteron_a2f5911b26f832e713d25ba67f15fd67b} 
+\index{PlotGeneratorDeuteron@{PlotGeneratorDeuteron}!GenerateSinglePlot@{GenerateSinglePlot}}
+\index{GenerateSinglePlot@{GenerateSinglePlot}!PlotGeneratorDeuteron@{PlotGeneratorDeuteron}}
+\doxysubsubsection{\texorpdfstring{GenerateSinglePlot()}{GenerateSinglePlot()}}
+{\footnotesize\ttfamily void Plot\+Generator\+Deuteron\+::\+Generate\+Single\+Plot (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{model\+\_\+name,  }\item[{const std\+::string \&}]{data\+\_\+file,  }\item[{const std\+::string \&}]{plot\+\_\+file }\end{DoxyParamCaption})}
+
+
+
+Generates a plot for the momentum distribution of a single potential model. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em model\+\_\+name} & Name of the potential model being visualized. \\
+\hline
+{\em data\+\_\+file} & Path to the data file containing the momentum distribution. \\
+\hline
+{\em plot\+\_\+file} & Path where the generated plot will be saved.\\
+\hline
+\end{DoxyParams}
+Generates a plot for the momentum distribution of a single potential model. This function reads momentum and probability density data from a file, creating a plot that visualizes the nucleon momentum distribution under a specified potential. 
+
+Definition at line \mbox{\hyperlink{plot__generator__deuteron_8cpp_source_l00036}{36}} of file \mbox{\hyperlink{plot__generator__deuteron_8cpp_source}{plot\+\_\+generator\+\_\+deuteron.\+cpp}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/deuteron/\mbox{\hyperlink{plot__generator__deuteron_8h}{plot\+\_\+generator\+\_\+deuteron.\+h}}\item 
+src/deuteron/\mbox{\hyperlink{plot__generator__deuteron_8cpp}{plot\+\_\+generator\+\_\+deuteron.\+cpp}}\end{DoxyCompactItemize}

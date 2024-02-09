@@ -1,0 +1,97 @@
+\doxysection{momentum\+\_\+distribution.\+cpp}
+\hypertarget{momentum__distribution_8cpp_source}{}\label{momentum__distribution_8cpp_source}\index{src/deuteron/momentum\_distribution.cpp@{src/deuteron/momentum\_distribution.cpp}}
+\mbox{\hyperlink{momentum__distribution_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{momentum__distribution_8cpp_source_l00001}00001\ }
+\DoxyCodeLine{\Hypertarget{momentum__distribution_8cpp_source_l00021}00021\ \textcolor{preprocessor}{\#include\ "{}../include/deuteron/momentum\_distribution.h"{}}}
+\DoxyCodeLine{\Hypertarget{momentum__distribution_8cpp_source_l00022}00022\ \textcolor{preprocessor}{\#include\ <fstream>}}
+\DoxyCodeLine{\Hypertarget{momentum__distribution_8cpp_source_l00023}00023\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{\Hypertarget{momentum__distribution_8cpp_source_l00024}00024\ \textcolor{preprocessor}{\#include\ <cmath>}}
+\DoxyCodeLine{\Hypertarget{momentum__distribution_8cpp_source_l00025}00025\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{\Hypertarget{momentum__distribution_8cpp_source_l00026}00026\ }
+\DoxyCodeLine{\Hypertarget{momentum__distribution_8cpp_source_l00027}\mbox{\hyperlink{classMomentumDistributionCalculator_aaf104c3572ee0af3ba1763d559ef6f1d}{00027}}\ \mbox{\hyperlink{classMomentumDistributionCalculator_aaf104c3572ee0af3ba1763d559ef6f1d}{MomentumDistributionCalculator::MomentumDistributionCalculator}}()\ \{\}}
+\DoxyCodeLine{\Hypertarget{momentum__distribution_8cpp_source_l00028}00028\ }
+\DoxyCodeLine{\Hypertarget{momentum__distribution_8cpp_source_l00032}00032\ \textcolor{keywordtype}{void}\ MomentumDistributionCalculator::NormalizeCoefficients(}
+\DoxyCodeLine{\Hypertarget{momentum__distribution_8cpp_source_l00033}00033\ \ \ \ \ std::vector<double>\&\ c,\ std::vector<double>\&\ d,\ std::vector<double>\&\ m2)\ }
+\DoxyCodeLine{\Hypertarget{momentum__distribution_8cpp_source_l00034}00034\ \{}
+\DoxyCodeLine{\Hypertarget{momentum__distribution_8cpp_source_l00035}00035\ \ \ \ \ \textcolor{keywordtype}{int}\ n\ =\ c.size();}
+\DoxyCodeLine{\Hypertarget{momentum__distribution_8cpp_source_l00036}00036\ }
+\DoxyCodeLine{\Hypertarget{momentum__distribution_8cpp_source_l00037}00037\ \ \ \ \ \textcolor{comment}{//\ Calculate\ the\ last\ 'c'\ coefficient}}
+\DoxyCodeLine{\Hypertarget{momentum__distribution_8cpp_source_l00038}00038\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ n\ -\/\ 1;\ i++)\ \{c[n\ -\/\ 1]\ -\/=\ c[i];\}}
+\DoxyCodeLine{\Hypertarget{momentum__distribution_8cpp_source_l00039}00039\ }
+\DoxyCodeLine{\Hypertarget{momentum__distribution_8cpp_source_l00040}00040\ \ \ \ \ \textcolor{keywordtype}{int}\ n2\ =\ n\ -\/\ 3;}
+\DoxyCodeLine{\Hypertarget{momentum__distribution_8cpp_source_l00041}00041\ \ \ \ \ \textcolor{keywordtype}{int}\ n1\ =\ n2\ +\ 1;}
+\DoxyCodeLine{\Hypertarget{momentum__distribution_8cpp_source_l00042}00042\ \ \ \ \ \textcolor{keywordtype}{int}\ n0\ =\ n1\ +\ 1;}
+\DoxyCodeLine{\Hypertarget{momentum__distribution_8cpp_source_l00043}00043\ }
+\DoxyCodeLine{\Hypertarget{momentum__distribution_8cpp_source_l00044}00044\ \ \ \ \ \textcolor{keywordtype}{double}\ sum1\ =\ 0.,\ sum2\ =\ 0.,\ sum3\ =\ 0.;}
+\DoxyCodeLine{\Hypertarget{momentum__distribution_8cpp_source_l00045}00045\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{momentum__distribution_8cpp_source_l00046}00046\ \ \ \ \ \textcolor{comment}{//\ Summation\ for\ the\ normalization\ of\ d\ coefficients}}
+\DoxyCodeLine{\Hypertarget{momentum__distribution_8cpp_source_l00047}00047\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ j\ =\ 0;\ j\ <=\ n\ -\/\ 3;\ ++j)\ \{}
+\DoxyCodeLine{\Hypertarget{momentum__distribution_8cpp_source_l00048}00048\ \ \ \ \ \ \ \ \ sum1\ +=\ d[j]\ /\ m2[j];}
+\DoxyCodeLine{\Hypertarget{momentum__distribution_8cpp_source_l00049}00049\ \ \ \ \ \ \ \ \ sum2\ +=\ d[j];}
+\DoxyCodeLine{\Hypertarget{momentum__distribution_8cpp_source_l00050}00050\ \ \ \ \ \ \ \ \ sum3\ +=\ d[j]\ *\ m2[j];}
+\DoxyCodeLine{\Hypertarget{momentum__distribution_8cpp_source_l00051}00051\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{momentum__distribution_8cpp_source_l00052}00052\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{momentum__distribution_8cpp_source_l00053}00053\ \ \ \ \ \textcolor{comment}{//\ Loop\ to\ calculate\ the\ last\ three\ 'd'\ coefficients}}
+\DoxyCodeLine{\Hypertarget{momentum__distribution_8cpp_source_l00054}00054\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ 3;\ ++i)\ \{}
+\DoxyCodeLine{\Hypertarget{momentum__distribution_8cpp_source_l00055}00055\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Normalize\ the\ current\ d\ coefficient}}
+\DoxyCodeLine{\Hypertarget{momentum__distribution_8cpp_source_l00056}00056\ \ \ \ \ \ \ \ \ d[n2]\ =\ -\/m2[n1]\ *\ m2[n0]\ *\ sum1\ +\ (m2[n1]\ +\ m2[n0])\ *\ sum2\ -\/\ sum3;}
+\DoxyCodeLine{\Hypertarget{momentum__distribution_8cpp_source_l00057}00057\ \ \ \ \ \ \ \ \ d[n2]\ *=\ m2[n2]\ /\ ((m2[n0]\ -\/\ m2[n2])\ *\ (m2[n1]\ -\/\ m2[n2]));}
+\DoxyCodeLine{\Hypertarget{momentum__distribution_8cpp_source_l00058}00058\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{momentum__distribution_8cpp_source_l00059}00059\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Cycle\ the\ indices\ for\ the\ next\ iteration}}
+\DoxyCodeLine{\Hypertarget{momentum__distribution_8cpp_source_l00060}00060\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacestd_a4874fd00297ff5aef2872379cb521783}{std::swap}}(n0,\ n1);}
+\DoxyCodeLine{\Hypertarget{momentum__distribution_8cpp_source_l00061}00061\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacestd_a4874fd00297ff5aef2872379cb521783}{std::swap}}(n1,\ n2);}
+\DoxyCodeLine{\Hypertarget{momentum__distribution_8cpp_source_l00062}00062\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{momentum__distribution_8cpp_source_l00063}00063\ \}}
+\DoxyCodeLine{\Hypertarget{momentum__distribution_8cpp_source_l00064}00064\ }
+\DoxyCodeLine{\Hypertarget{momentum__distribution_8cpp_source_l00071}\mbox{\hyperlink{classMomentumDistributionCalculator_a8a18bf4ba122e8d1057b86fe1efb530d}{00071}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classMomentumDistributionCalculator_a8a18bf4ba122e8d1057b86fe1efb530d}{MomentumDistributionCalculator::CalculateDistribution}}(}
+\DoxyCodeLine{\Hypertarget{momentum__distribution_8cpp_source_l00072}00072\ \ \ \ \ std::ofstream\&\ out\_file,\ \textcolor{keywordtype}{double}\ alpha,\ \textcolor{keywordtype}{double}\ m\_0,\ }
+\DoxyCodeLine{\Hypertarget{momentum__distribution_8cpp_source_l00073}00073\ \ \ \ \ std::vector<double>\&\ c,\ std::vector<double>\&\ d)\ }
+\DoxyCodeLine{\Hypertarget{momentum__distribution_8cpp_source_l00074}00074\ \{}
+\DoxyCodeLine{\Hypertarget{momentum__distribution_8cpp_source_l00075}00075\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ dp\ =\ max\_momentum\ /\ steps;\ \textcolor{comment}{//\ Increment\ in\ momentum\ per\ step}}
+\DoxyCodeLine{\Hypertarget{momentum__distribution_8cpp_source_l00076}00076\ \ \ \ \ \textcolor{keywordtype}{double}\ p[steps\ +\ 1],\ r[steps\ +\ 1],\ f\_p[steps\ +\ 1];\ \textcolor{comment}{//\ Arrays\ for\ momentum,\ reduced\ momentum,\ and\ momentum\ distribution}}
+\DoxyCodeLine{\Hypertarget{momentum__distribution_8cpp_source_l00077}00077\ \ \ \ \ \textcolor{keywordtype}{double}\ norm\ =\ 0;\ \textcolor{comment}{//\ Normalization\ constant}}
+\DoxyCodeLine{\Hypertarget{momentum__distribution_8cpp_source_l00078}00078\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{momentum__distribution_8cpp_source_l00079}00079\ \ \ \ \ \textcolor{keywordtype}{int}\ n\ =\ c.size();}
+\DoxyCodeLine{\Hypertarget{momentum__distribution_8cpp_source_l00080}00080\ }
+\DoxyCodeLine{\Hypertarget{momentum__distribution_8cpp_source_l00081}00081\ \ \ \ \ std::vector<double>\ m(n),\ m2(n);}
+\DoxyCodeLine{\Hypertarget{momentum__distribution_8cpp_source_l00082}00082\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ n;\ i++)\ \{}
+\DoxyCodeLine{\Hypertarget{momentum__distribution_8cpp_source_l00083}00083\ \ \ \ \ \ \ \ \ \ \ \ \ m[i]\ =\ alpha\ +\ i\ *\ m\_0;\ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{momentum__distribution_8cpp_source_l00084}00084\ \ \ \ \ \ \ \ \ \ \ \ \ m2[i]\ =\ m[i]\ *\ m[i];}
+\DoxyCodeLine{\Hypertarget{momentum__distribution_8cpp_source_l00085}00085\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{momentum__distribution_8cpp_source_l00086}00086\ }
+\DoxyCodeLine{\Hypertarget{momentum__distribution_8cpp_source_l00087}00087\ \ \ \ \ NormalizeCoefficients(c,\ d,\ m2);}
+\DoxyCodeLine{\Hypertarget{momentum__distribution_8cpp_source_l00088}00088\ }
+\DoxyCodeLine{\Hypertarget{momentum__distribution_8cpp_source_l00089}00089\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ j\ =\ 0;\ j\ <=\ steps;\ ++j)\ \{}
+\DoxyCodeLine{\Hypertarget{momentum__distribution_8cpp_source_l00090}00090\ }
+\DoxyCodeLine{\Hypertarget{momentum__distribution_8cpp_source_l00091}00091\ \ \ \ \ \ \ \ \ p[j]\ =\ j\ *\ dp;\ \textcolor{comment}{//\ Calculate\ momentum\ in\ GeV/c}}
+\DoxyCodeLine{\Hypertarget{momentum__distribution_8cpp_source_l00092}00092\ \ \ \ \ \ \ \ \ r[j]\ =\ p[j]\ /\ conversion;\ \textcolor{comment}{//\ Convert\ momentum\ to\ reduced\ momentum\ (GeV/c\ to\ fm\string^-\/1)}}
+\DoxyCodeLine{\Hypertarget{momentum__distribution_8cpp_source_l00093}00093\ }
+\DoxyCodeLine{\Hypertarget{momentum__distribution_8cpp_source_l00094}00094\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{momentum__distribution_8cpp_source_l00095}00095\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Calculation\ for\ the\ Paris\ potential}}
+\DoxyCodeLine{\Hypertarget{momentum__distribution_8cpp_source_l00096}00096\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ U\ =\ 0.,\ W\ =\ 0.;}
+\DoxyCodeLine{\Hypertarget{momentum__distribution_8cpp_source_l00097}00097\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ n;\ i++)\ \{}
+\DoxyCodeLine{\Hypertarget{momentum__distribution_8cpp_source_l00098}00098\ \ \ \ \ \ \ \ \ \ \ \ \ U\ +=\ c[i]\ /\ (r[j]\ *\ r[j]\ +\ m2[i]);}
+\DoxyCodeLine{\Hypertarget{momentum__distribution_8cpp_source_l00099}00099\ \ \ \ \ \ \ \ \ \ \ \ \ W\ +=\ d[i]\ /\ (r[j]\ *\ r[j]\ +\ m2[i]);}
+\DoxyCodeLine{\Hypertarget{momentum__distribution_8cpp_source_l00100}00100\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{momentum__distribution_8cpp_source_l00101}00101\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{momentum__distribution_8cpp_source_l00102}00102\ \ \ \ \ \ \ \ \ U\ *=\ sqrtpi2;\ \textcolor{comment}{//\ s\ wave\ contribution}}
+\DoxyCodeLine{\Hypertarget{momentum__distribution_8cpp_source_l00103}00103\ \ \ \ \ \ \ \ \ W\ *=\ sqrtpi2;\ \textcolor{comment}{//\ d\ wave\ contribution}}
+\DoxyCodeLine{\Hypertarget{momentum__distribution_8cpp_source_l00104}00104\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{momentum__distribution_8cpp_source_l00105}00105\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Calculate\ momentum\ distribution\ and\ accumulate\ normalization}}
+\DoxyCodeLine{\Hypertarget{momentum__distribution_8cpp_source_l00106}00106\ \ \ \ \ \ \ \ \ f\_p[j]\ =\ r[j]\ *\ r[j]\ *\ (U\ *\ U\ +\ W\ *\ W);}
+\DoxyCodeLine{\Hypertarget{momentum__distribution_8cpp_source_l00107}00107\ \ \ \ \ \ \ \ \ norm\ +=\ f\_p[j];}
+\DoxyCodeLine{\Hypertarget{momentum__distribution_8cpp_source_l00108}00108\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{momentum__distribution_8cpp_source_l00109}00109\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{momentum__distribution_8cpp_source_l00110}00110\ \ \ \ \ \textcolor{comment}{//\ Normalize\ and\ output\ the\ momentum\ distribution}}
+\DoxyCodeLine{\Hypertarget{momentum__distribution_8cpp_source_l00111}00111\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <=\ steps;\ i++)\ \{}
+\DoxyCodeLine{\Hypertarget{momentum__distribution_8cpp_source_l00112}00112\ \ \ \ \ \ \ \ \ f\_p[i]\ /=\ norm;}
+\DoxyCodeLine{\Hypertarget{momentum__distribution_8cpp_source_l00113}00113\ \ \ \ \ \ \ \ \ out\_file\ <<\ p[i]\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)t"{}}\ <<\ f\_p[i]\ <<\ std::endl;}
+\DoxyCodeLine{\Hypertarget{momentum__distribution_8cpp_source_l00114}00114\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{momentum__distribution_8cpp_source_l00115}00115\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{momentum__distribution_8cpp_source_l00116}00116\ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Momentum\ distribution\ calculation\ completed\ and\ saved\ to\ file."{}}\ }
+\DoxyCodeLine{\Hypertarget{momentum__distribution_8cpp_source_l00117}00117\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ std::endl;}
+\DoxyCodeLine{\Hypertarget{momentum__distribution_8cpp_source_l00118}00118\ }
+\DoxyCodeLine{\Hypertarget{momentum__distribution_8cpp_source_l00119}00119\ \}}
+
+\end{DoxyCode}

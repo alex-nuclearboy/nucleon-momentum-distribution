@@ -1,0 +1,110 @@
+\doxysection{plot\+\_\+generator\+\_\+deuteron.\+cpp}
+\hypertarget{plot__generator__deuteron_8cpp_source}{}\label{plot__generator__deuteron_8cpp_source}\index{src/deuteron/plot\_generator\_deuteron.cpp@{src/deuteron/plot\_generator\_deuteron.cpp}}
+\mbox{\hyperlink{plot__generator__deuteron_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{plot__generator__deuteron_8cpp_source_l00001}00001\ }
+\DoxyCodeLine{\Hypertarget{plot__generator__deuteron_8cpp_source_l00019}00019\ \textcolor{preprocessor}{\#include\ "{}../include/deuteron/plot\_generator\_deuteron.h"{}}}
+\DoxyCodeLine{\Hypertarget{plot__generator__deuteron_8cpp_source_l00020}00020\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{\Hypertarget{plot__generator__deuteron_8cpp_source_l00021}00021\ \textcolor{preprocessor}{\#include\ <fstream>}}
+\DoxyCodeLine{\Hypertarget{plot__generator__deuteron_8cpp_source_l00022}00022\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{\Hypertarget{plot__generator__deuteron_8cpp_source_l00023}00023\ \textcolor{preprocessor}{\#include\ "{}TGraph.h"{}}}
+\DoxyCodeLine{\Hypertarget{plot__generator__deuteron_8cpp_source_l00024}00024\ \textcolor{preprocessor}{\#include\ "{}TCanvas.h"{}}}
+\DoxyCodeLine{\Hypertarget{plot__generator__deuteron_8cpp_source_l00025}00025\ \textcolor{preprocessor}{\#include\ "{}TAxis.h"{}}}
+\DoxyCodeLine{\Hypertarget{plot__generator__deuteron_8cpp_source_l00026}00026\ \textcolor{preprocessor}{\#include\ "{}TLegend.h"{}}}
+\DoxyCodeLine{\Hypertarget{plot__generator__deuteron_8cpp_source_l00027}00027\ \textcolor{preprocessor}{\#include\ "{}TMultiGraph.h"{}}}
+\DoxyCodeLine{\Hypertarget{plot__generator__deuteron_8cpp_source_l00028}00028\ }
+\DoxyCodeLine{\Hypertarget{plot__generator__deuteron_8cpp_source_l00029}\mbox{\hyperlink{classPlotGeneratorDeuteron_a36f41ee705c08eee6fcff082c0dc6f6e}{00029}}\ \mbox{\hyperlink{classPlotGeneratorDeuteron_a36f41ee705c08eee6fcff082c0dc6f6e}{PlotGeneratorDeuteron::PlotGeneratorDeuteron}}()\ \{\}}
+\DoxyCodeLine{\Hypertarget{plot__generator__deuteron_8cpp_source_l00030}00030\ }
+\DoxyCodeLine{\Hypertarget{plot__generator__deuteron_8cpp_source_l00036}\mbox{\hyperlink{classPlotGeneratorDeuteron_a2f5911b26f832e713d25ba67f15fd67b}{00036}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classPlotGeneratorDeuteron_a2f5911b26f832e713d25ba67f15fd67b}{PlotGeneratorDeuteron::GenerateSinglePlot}}(}
+\DoxyCodeLine{\Hypertarget{plot__generator__deuteron_8cpp_source_l00037}00037\ \ \ \ \ \textcolor{keyword}{const}\ std::string\&\ model\_name,\ \textcolor{keyword}{const}\ std::string\&\ data\_file,\ }
+\DoxyCodeLine{\Hypertarget{plot__generator__deuteron_8cpp_source_l00038}00038\ \ \ \ \ \textcolor{keyword}{const}\ std::string\&\ plot\_file)}
+\DoxyCodeLine{\Hypertarget{plot__generator__deuteron_8cpp_source_l00039}00039\ \{}
+\DoxyCodeLine{\Hypertarget{plot__generator__deuteron_8cpp_source_l00040}00040\ \ \ \ \ std::ifstream\ in\_file(data\_file);}
+\DoxyCodeLine{\Hypertarget{plot__generator__deuteron_8cpp_source_l00041}00041\ \ \ \ \ \textcolor{keywordflow}{if}\ (!in\_file.is\_open())\ \{}
+\DoxyCodeLine{\Hypertarget{plot__generator__deuteron_8cpp_source_l00042}00042\ \ \ \ \ \ \ \ \ std::cerr\ <<\ \textcolor{stringliteral}{"{}Error:\ Failed\ to\ open\ the\ data\ file\ for\ reading:\ "{}}\ }
+\DoxyCodeLine{\Hypertarget{plot__generator__deuteron_8cpp_source_l00043}00043\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ data\_file\ <<\ std::endl;}
+\DoxyCodeLine{\Hypertarget{plot__generator__deuteron_8cpp_source_l00044}00044\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{plot__generator__deuteron_8cpp_source_l00045}00045\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{plot__generator__deuteron_8cpp_source_l00046}00046\ }
+\DoxyCodeLine{\Hypertarget{plot__generator__deuteron_8cpp_source_l00047}00047\ \ \ \ \ std::vector<double>\ momentum;}
+\DoxyCodeLine{\Hypertarget{plot__generator__deuteron_8cpp_source_l00048}00048\ \ \ \ \ std::vector<double>\ density;}
+\DoxyCodeLine{\Hypertarget{plot__generator__deuteron_8cpp_source_l00049}00049\ \ \ \ \ \textcolor{keywordtype}{double}\ p,\ d;}
+\DoxyCodeLine{\Hypertarget{plot__generator__deuteron_8cpp_source_l00050}00050\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{plot__generator__deuteron_8cpp_source_l00051}00051\ \ \ \ \ \textcolor{keywordflow}{while}\ (in\_file\ >>\ p\ >>\ d)\ \{}
+\DoxyCodeLine{\Hypertarget{plot__generator__deuteron_8cpp_source_l00052}00052\ \ \ \ \ \ \ \ \ momentum.push\_back(p);}
+\DoxyCodeLine{\Hypertarget{plot__generator__deuteron_8cpp_source_l00053}00053\ \ \ \ \ \ \ \ \ density.push\_back(d);}
+\DoxyCodeLine{\Hypertarget{plot__generator__deuteron_8cpp_source_l00054}00054\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{plot__generator__deuteron_8cpp_source_l00055}00055\ \ \ \ \ in\_file.close();}
+\DoxyCodeLine{\Hypertarget{plot__generator__deuteron_8cpp_source_l00056}00056\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{plot__generator__deuteron_8cpp_source_l00057}00057\ \ \ \ \ \textcolor{comment}{//\ Prepare\ the\ TGraph\ \ \ \ }}
+\DoxyCodeLine{\Hypertarget{plot__generator__deuteron_8cpp_source_l00058}00058\ \ \ \ \ TGraph*\ graph\ =\ \textcolor{keyword}{new}\ TGraph(momentum.size(),\ \&momentum[0],\ \&density[0]);}
+\DoxyCodeLine{\Hypertarget{plot__generator__deuteron_8cpp_source_l00059}00059\ \ \ \ \ std::string\ title\ =\ \textcolor{stringliteral}{"{}Nucleon\ Momentum\ Distribution\ ("{}}\ +\ model\_name\ +}
+\DoxyCodeLine{\Hypertarget{plot__generator__deuteron_8cpp_source_l00060}00060\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}\ potential);Momentum\ (GeV/c);Probability\ Density"{}};}
+\DoxyCodeLine{\Hypertarget{plot__generator__deuteron_8cpp_source_l00061}00061\ \ \ \ \ graph-\/>SetTitle(title.c\_str());}
+\DoxyCodeLine{\Hypertarget{plot__generator__deuteron_8cpp_source_l00062}00062\ \ \ \ \ graph-\/>SetMarkerStyle(20);}
+\DoxyCodeLine{\Hypertarget{plot__generator__deuteron_8cpp_source_l00063}00063\ \ \ \ \ graph-\/>SetMarkerSize(0.7);}
+\DoxyCodeLine{\Hypertarget{plot__generator__deuteron_8cpp_source_l00064}00064\ \ \ \ \ graph-\/>SetDrawOption(\textcolor{stringliteral}{"{}AP"{}});}
+\DoxyCodeLine{\Hypertarget{plot__generator__deuteron_8cpp_source_l00065}00065\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{plot__generator__deuteron_8cpp_source_l00066}00066\ \ \ \ \ \textcolor{comment}{//\ Create\ a\ TCanvas\ and\ draw\ the\ TGraph}}
+\DoxyCodeLine{\Hypertarget{plot__generator__deuteron_8cpp_source_l00067}00067\ \ \ \ \ TCanvas*\ canvas\ =\ \textcolor{keyword}{new}\ TCanvas(\textcolor{stringliteral}{"{}c1"{}},\ model\_name.c\_str(),\ 800,\ 600);}
+\DoxyCodeLine{\Hypertarget{plot__generator__deuteron_8cpp_source_l00068}00068\ \ \ \ \ graph-\/>Draw(\textcolor{stringliteral}{"{}APL"{}});}
+\DoxyCodeLine{\Hypertarget{plot__generator__deuteron_8cpp_source_l00069}00069\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{plot__generator__deuteron_8cpp_source_l00070}00070\ \ \ \ \ \textcolor{comment}{//\ Save\ the\ plot}}
+\DoxyCodeLine{\Hypertarget{plot__generator__deuteron_8cpp_source_l00071}00071\ \ \ \ \ canvas-\/>SaveAs(plot\_file.c\_str());}
+\DoxyCodeLine{\Hypertarget{plot__generator__deuteron_8cpp_source_l00072}00072\ \ \ \ \ \textcolor{keyword}{delete}\ canvas;\ \textcolor{comment}{//\ Clean\ up}}
+\DoxyCodeLine{\Hypertarget{plot__generator__deuteron_8cpp_source_l00073}00073\ \}}
+\DoxyCodeLine{\Hypertarget{plot__generator__deuteron_8cpp_source_l00074}00074\ }
+\DoxyCodeLine{\Hypertarget{plot__generator__deuteron_8cpp_source_l00080}\mbox{\hyperlink{classPlotGeneratorDeuteron_ac901a0b96353458d46118aeaf0705b3b}{00080}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classPlotGeneratorDeuteron_ac901a0b96353458d46118aeaf0705b3b}{PlotGeneratorDeuteron::GenerateCombinedPlot}}(}
+\DoxyCodeLine{\Hypertarget{plot__generator__deuteron_8cpp_source_l00081}00081\ \ \ \ \ \textcolor{keyword}{const}\ nlohmann::json\&\ models,\ \textcolor{keyword}{const}\ std::string\&\ combined\_plot\_file)}
+\DoxyCodeLine{\Hypertarget{plot__generator__deuteron_8cpp_source_l00082}00082\ \{}
+\DoxyCodeLine{\Hypertarget{plot__generator__deuteron_8cpp_source_l00083}00083\ \ \ \ \ TMultiGraph\ *mg\ =\ \textcolor{keyword}{new}\ TMultiGraph();}
+\DoxyCodeLine{\Hypertarget{plot__generator__deuteron_8cpp_source_l00084}00084\ \ \ \ \ TLegend\ *legend\ =\ \textcolor{keyword}{new}\ TLegend(0.7,\ 0.7,\ 0.9,\ 0.9);}
+\DoxyCodeLine{\Hypertarget{plot__generator__deuteron_8cpp_source_l00085}00085\ }
+\DoxyCodeLine{\Hypertarget{plot__generator__deuteron_8cpp_source_l00086}00086\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ model\ :\ models)\ \{}
+\DoxyCodeLine{\Hypertarget{plot__generator__deuteron_8cpp_source_l00087}00087\ \ \ \ \ \ \ \ \ std::string\ model\_name\ =\ model[\textcolor{stringliteral}{"{}name"{}}];}
+\DoxyCodeLine{\Hypertarget{plot__generator__deuteron_8cpp_source_l00088}00088\ \ \ \ \ \ \ \ \ std::string\ data\_file\ =\ \textcolor{stringliteral}{"{}data/"{}}\ +\ model\_name\ }
+\DoxyCodeLine{\Hypertarget{plot__generator__deuteron_8cpp_source_l00089}00089\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +\ \textcolor{stringliteral}{"{}\_momentum\_distribution.txt"{}};}
+\DoxyCodeLine{\Hypertarget{plot__generator__deuteron_8cpp_source_l00090}00090\ }
+\DoxyCodeLine{\Hypertarget{plot__generator__deuteron_8cpp_source_l00091}00091\ \ \ \ \ \ \ \ \ std::ifstream\ in\_file(data\_file);}
+\DoxyCodeLine{\Hypertarget{plot__generator__deuteron_8cpp_source_l00092}00092\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!in\_file.is\_open())\ \{}
+\DoxyCodeLine{\Hypertarget{plot__generator__deuteron_8cpp_source_l00093}00093\ \ \ \ \ \ \ \ \ \ \ \ \ std::cerr\ <<\ \textcolor{stringliteral}{"{}Error:\ Failed\ to\ open\ the\ data\ file\ for\ reading:\ "{}}\ }
+\DoxyCodeLine{\Hypertarget{plot__generator__deuteron_8cpp_source_l00094}00094\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ data\_file\ <<\ std::endl;}
+\DoxyCodeLine{\Hypertarget{plot__generator__deuteron_8cpp_source_l00095}00095\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};\ \textcolor{comment}{//\ Skip\ this\ model\ if\ the\ file\ can't\ be\ opened}}
+\DoxyCodeLine{\Hypertarget{plot__generator__deuteron_8cpp_source_l00096}00096\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{plot__generator__deuteron_8cpp_source_l00097}00097\ }
+\DoxyCodeLine{\Hypertarget{plot__generator__deuteron_8cpp_source_l00098}00098\ \ \ \ \ \ \ \ \ std::vector<double>\ momentum;}
+\DoxyCodeLine{\Hypertarget{plot__generator__deuteron_8cpp_source_l00099}00099\ \ \ \ \ \ \ \ \ std::vector<double>\ density;}
+\DoxyCodeLine{\Hypertarget{plot__generator__deuteron_8cpp_source_l00100}00100\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ p,\ d;}
+\DoxyCodeLine{\Hypertarget{plot__generator__deuteron_8cpp_source_l00101}00101\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (in\_file\ >>\ p\ >>\ d)\ \{}
+\DoxyCodeLine{\Hypertarget{plot__generator__deuteron_8cpp_source_l00102}00102\ \ \ \ \ \ \ \ \ \ \ \ \ momentum.push\_back(p);}
+\DoxyCodeLine{\Hypertarget{plot__generator__deuteron_8cpp_source_l00103}00103\ \ \ \ \ \ \ \ \ \ \ \ \ density.push\_back(d);}
+\DoxyCodeLine{\Hypertarget{plot__generator__deuteron_8cpp_source_l00104}00104\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{plot__generator__deuteron_8cpp_source_l00105}00105\ \ \ \ \ \ \ \ \ in\_file.close();}
+\DoxyCodeLine{\Hypertarget{plot__generator__deuteron_8cpp_source_l00106}00106\ }
+\DoxyCodeLine{\Hypertarget{plot__generator__deuteron_8cpp_source_l00107}00107\ \ \ \ \ \ \ \ \ TGraph*\ graph\ =\ \textcolor{keyword}{new}\ TGraph(}
+\DoxyCodeLine{\Hypertarget{plot__generator__deuteron_8cpp_source_l00108}00108\ \ \ \ \ \ \ \ \ \ \ \ \ momentum.size(),\ momentum.data(),\ density.data()}
+\DoxyCodeLine{\Hypertarget{plot__generator__deuteron_8cpp_source_l00109}00109\ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{\Hypertarget{plot__generator__deuteron_8cpp_source_l00110}00110\ \ \ \ \ \ \ \ \ graph-\/>SetTitle(model\_name.c\_str());\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{plot__generator__deuteron_8cpp_source_l00111}00111\ \ \ \ \ \ \ \ \ graph-\/>SetLineWidth(2);}
+\DoxyCodeLine{\Hypertarget{plot__generator__deuteron_8cpp_source_l00112}00112\ \ \ \ \ \ \ \ \ graph-\/>SetLineStyle(1\ +\ \&model\ -\/\ \&models[0]);\ \textcolor{comment}{//\ Different\ line\ style\ for\ each\ model}}
+\DoxyCodeLine{\Hypertarget{plot__generator__deuteron_8cpp_source_l00113}00113\ \ \ \ \ \ \ \ \ graph-\/>SetLineColor(1\ +\ \&model\ -\/\ \&models[0]);\ \textcolor{comment}{//\ Different\ line\ color\ for\ each\ model}}
+\DoxyCodeLine{\Hypertarget{plot__generator__deuteron_8cpp_source_l00114}00114\ \ \ \ \ \ \ \ \ mg-\/>Add(graph);}
+\DoxyCodeLine{\Hypertarget{plot__generator__deuteron_8cpp_source_l00115}00115\ \ \ \ \ \ \ \ \ legend-\/>AddEntry(graph,\ (model\_name\ +\ \textcolor{stringliteral}{"{}\ potential"{}}).c\_str(),\ \textcolor{stringliteral}{"{}lp"{}});}
+\DoxyCodeLine{\Hypertarget{plot__generator__deuteron_8cpp_source_l00116}00116\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{plot__generator__deuteron_8cpp_source_l00117}00117\ }
+\DoxyCodeLine{\Hypertarget{plot__generator__deuteron_8cpp_source_l00118}00118\ \ \ \ \ TCanvas\ *canvas\ =\ \textcolor{keyword}{new}\ TCanvas(}
+\DoxyCodeLine{\Hypertarget{plot__generator__deuteron_8cpp_source_l00119}00119\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}c2"{}},\ \textcolor{stringliteral}{"{}Combined\ Fermi\ Momentum\ Distribution"{}},\ 800,\ 600}
+\DoxyCodeLine{\Hypertarget{plot__generator__deuteron_8cpp_source_l00120}00120\ \ \ \ \ );}
+\DoxyCodeLine{\Hypertarget{plot__generator__deuteron_8cpp_source_l00121}00121\ \ \ \ \ mg-\/>GetXaxis()-\/>SetRangeUser(0.,\ 0.4);}
+\DoxyCodeLine{\Hypertarget{plot__generator__deuteron_8cpp_source_l00122}00122\ \ \ \ \ mg-\/>GetYaxis()-\/>SetRangeUser(0.,\ 0.012);}
+\DoxyCodeLine{\Hypertarget{plot__generator__deuteron_8cpp_source_l00123}00123\ \ \ \ \ mg-\/>Draw(\textcolor{stringliteral}{"{}ALP"{}});}
+\DoxyCodeLine{\Hypertarget{plot__generator__deuteron_8cpp_source_l00124}00124\ \ \ \ \ std::string\ title\ =\ \textcolor{stringliteral}{"{}Fermi\ Momentum\ Distribution;Momentum\ (GeV/c);"{}}}
+\DoxyCodeLine{\Hypertarget{plot__generator__deuteron_8cpp_source_l00125}00125\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Probability\ Density\ (c/GeV)"{}};}
+\DoxyCodeLine{\Hypertarget{plot__generator__deuteron_8cpp_source_l00126}00126\ \ \ \ \ mg-\/>SetTitle(title.c\_str());}
+\DoxyCodeLine{\Hypertarget{plot__generator__deuteron_8cpp_source_l00127}00127\ \ \ \ \ legend-\/>Draw();}
+\DoxyCodeLine{\Hypertarget{plot__generator__deuteron_8cpp_source_l00128}00128\ }
+\DoxyCodeLine{\Hypertarget{plot__generator__deuteron_8cpp_source_l00129}00129\ \ \ \ \ canvas-\/>SaveAs(combined\_plot\_file.c\_str());}
+\DoxyCodeLine{\Hypertarget{plot__generator__deuteron_8cpp_source_l00130}00130\ \ \ \ \ \textcolor{keyword}{delete}\ canvas;\ \textcolor{comment}{//\ Clean\ up}}
+\DoxyCodeLine{\Hypertarget{plot__generator__deuteron_8cpp_source_l00131}00131\ \}}
+
+\end{DoxyCode}

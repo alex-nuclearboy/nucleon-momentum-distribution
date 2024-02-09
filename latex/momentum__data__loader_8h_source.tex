@@ -1,0 +1,33 @@
+\doxysection{momentum\+\_\+data\+\_\+loader.\+h}
+\hypertarget{momentum__data__loader_8h_source}{}\label{momentum__data__loader_8h_source}\index{include/helium/momentum\_data\_loader.h@{include/helium/momentum\_data\_loader.h}}
+\mbox{\hyperlink{momentum__data__loader_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{momentum__data__loader_8h_source_l00001}00001\ \textcolor{preprocessor}{\#ifndef\ HELIUM\_MOMENTUM\_DATA\_LOADER\_H}}
+\DoxyCodeLine{\Hypertarget{momentum__data__loader_8h_source_l00002}00002\ \textcolor{preprocessor}{\#define\ HELIUM\_MOMENTUM\_DATA\_LOADER\_H}}
+\DoxyCodeLine{\Hypertarget{momentum__data__loader_8h_source_l00003}00003\ }
+\DoxyCodeLine{\Hypertarget{momentum__data__loader_8h_source_l00004}00004\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{\Hypertarget{momentum__data__loader_8h_source_l00005}00005\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{\Hypertarget{momentum__data__loader_8h_source_l00006}00006\ }
+\DoxyCodeLine{\Hypertarget{momentum__data__loader_8h_source_l00016}\mbox{\hyperlink{classMomentumDataLoader}{00016}}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classMomentumDataLoader}{MomentumDataLoader}}\ \{}
+\DoxyCodeLine{\Hypertarget{momentum__data__loader_8h_source_l00017}00017\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{momentum__data__loader_8h_source_l00023}\mbox{\hyperlink{classMomentumDataLoader_ab94cd19d5a3dd9cfaaf316089a405bb3}{00023}}\ \ \ \ \ \mbox{\hyperlink{classMomentumDataLoader_ab94cd19d5a3dd9cfaaf316089a405bb3}{MomentumDataLoader}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{\Hypertarget{momentum__data__loader_8h_source_l00024}00024\ }
+\DoxyCodeLine{\Hypertarget{momentum__data__loader_8h_source_l00035}00035\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classMomentumDataLoader_a72fecaf51fab5a56829dd39070b4a4df}{LoadAndProcessData}}(}
+\DoxyCodeLine{\Hypertarget{momentum__data__loader_8h_source_l00036}00036\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::string\&\ input\_file\_path,}
+\DoxyCodeLine{\Hypertarget{momentum__data__loader_8h_source_l00037}00037\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::string\&\ output\_file\_path,}
+\DoxyCodeLine{\Hypertarget{momentum__data__loader_8h_source_l00038}00038\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ is\_momentum\_in\_fm,}
+\DoxyCodeLine{\Hypertarget{momentum__data__loader_8h_source_l00039}00039\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ is\_prob\_normalized);}
+\DoxyCodeLine{\Hypertarget{momentum__data__loader_8h_source_l00040}00040\ }
+\DoxyCodeLine{\Hypertarget{momentum__data__loader_8h_source_l00048}00048\ \ \ \ \ std::vector<std::pair<float,\ float>>\ \mbox{\hyperlink{classMomentumDataLoader_a88cd30b276f670e554576be7c6356984}{LoadData}}(\textcolor{keyword}{const}\ std::string\&\ file\_path);}
+\DoxyCodeLine{\Hypertarget{momentum__data__loader_8h_source_l00049}00049\ }
+\DoxyCodeLine{\Hypertarget{momentum__data__loader_8h_source_l00050}00050\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{\Hypertarget{momentum__data__loader_8h_source_l00061}00061\ \ \ \ \ std::pair<float,\ float>\ ParseAndProcessLine(}
+\DoxyCodeLine{\Hypertarget{momentum__data__loader_8h_source_l00062}00062\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::string\&\ line,\ \textcolor{keywordtype}{bool}\ is\_momentum\_in\_fm,\ \textcolor{keywordtype}{bool}\ is\_prob\_normalized);}
+\DoxyCodeLine{\Hypertarget{momentum__data__loader_8h_source_l00063}00063\ }
+\DoxyCodeLine{\Hypertarget{momentum__data__loader_8h_source_l00070}00070\ \ \ \ \ std::pair<float,\ float>\ ParseLine(\textcolor{keyword}{const}\ std::string\&\ line);}
+\DoxyCodeLine{\Hypertarget{momentum__data__loader_8h_source_l00071}00071\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{momentum__data__loader_8h_source_l00072}00072\ \};}
+\DoxyCodeLine{\Hypertarget{momentum__data__loader_8h_source_l00073}00073\ }
+\DoxyCodeLine{\Hypertarget{momentum__data__loader_8h_source_l00074}00074\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ HELIUM\_MOMENTUM\_DATA\_LOADER\_H}}
+
+\end{DoxyCode}
