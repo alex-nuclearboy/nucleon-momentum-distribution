@@ -5,8 +5,10 @@
 This repository provides analytical tools for investigating the momentum distribution of nucleons within a deuteron as well as the momentum distribution of the N\*(1535) resonance within the <sup>3</sup>He nucleus.
 
 It uses different nucleon-nucleon interaction models, specifically the Paris [[1](<https://doi.org/10.1016/0370-2693(81)90659-6>)] and the charge-dependent Bonn (CD-Bonn) [[2](https://doi.org/10.1103/PhysRevC.63.024001)] potentials, to calculate and visually represent the nucleon momentum distribution in a deuteron. The process is streamlined by the software automatically processing model parameters provided in a JSON configuration file, resulting in both numerical data and graphical representations of the momentum distributions.
+The calculated nucleon momentum distribution in the deuteron allows simulating and analysing quasi-elastic proton and deuteron scattering reactions (pd -> ppn<sub>spectator</sub>).
 
 Additionally, the repository includes the tool for graphical representation of the momentum distribution of the N\* resonance within the <sup>3</sup>He nucleus, considered as a bound system of the resonance and a deuteron. This analysis is based on the theoretical work of Kelkar _et al._ [[3](https://doi.org/10.1142/S0218301319500666)], [[4](https://doi.org/10.1016/j.nuclphysa.2020.121698)], in which the N\* momentum distribution is evaluated for various sets of coupling constants corresponding to binding energies E<sub>N\*-d</sub> = -0.33, -0.53, and -0.74 MeV. Comparing these distributions with the proton momentum distribution in <sup>3</sup>He yields insights into exotic nuclear states' structure and dynamics.
+The momentum distribution of the N\* resonance within the <sup>3<\sup>He nucleus is crucial for simulating and analysing the production and decay of η-mesic helium nuclei.
 
 ## Key Features
 
