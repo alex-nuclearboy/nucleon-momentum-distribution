@@ -1,6 +1,8 @@
 # Nucleon and N\* Resonance Momentum Distribution Analysis
 
-[Key Features](#key-features) · [Software Dependencies](#software-dependencies) · [Environment Setup](#environment-setup) · [Compilation and Execution](#compilation-and-execution) · [Outputs](#outputs) · [References](#references) · [License](#license)
+[Overview](#overview) · [Key Features](#key-features) · [Software Dependencies](#software-dependencies) · [Environment Setup](#environment-setup) · [Compilation and Execution](#compilation-and-execution) · [Outputs](#outputs) · [References](#references) · [License](#license)
+
+## Overview
 
 This repository provides analytical tools for investigating the momentum distribution of nucleons within a deuteron as well as the momentum distribution of the N\*(1535) resonance within the <sup>3</sup>He nucleus.
 
@@ -10,12 +12,12 @@ The calculated nucleon momentum distribution in the deuteron allows simulating a
 Additionally, the repository includes the tool for graphical representation of the momentum distribution of the N\* resonance within the <sup>3</sup>He nucleus, considered as a bound system of the resonance and a deuteron. This analysis is based on the theoretical work of Kelkar _et al._ [[3](https://doi.org/10.1142/S0218301319500666)], [[4](https://doi.org/10.1016/j.nuclphysa.2020.121698)], in which the N\* momentum distribution is evaluated for various sets of coupling constants corresponding to binding energies E<sub>N\*-d</sub> = -0.33, -0.53, and -0.74 MeV. 
 The tool's ability to compare these distributions with proton momentum distributions in <sup>3</sup>He is crucial for simulating and exploring the production and decay mechanisms of η-mesic helium nuclei.
 
-These momentum distributions can be used in conjunction with the simulation tools available in the [WASA-Simulations](https://github.com/alex-nuclearboy/WASA-Simulations) repository to perform comprehensive nuclear reaction simulations.
-
 ## Key Features
 
 -   **Deuteron Analysis:** Uses Paris [[1](<https://doi.org/10.1016/0370-2693(81)90659-6>)] and CD-Bonn [[2](https://doi.org/10.1103/PhysRevC.63.024001)] nucleon-nucleon potentials for calculations of nucleon momentum distribution in a deuteron, derived from parameters specified in a JSON configuration file.
 -   **N\*(1535) Resonance in <sup>3</sup>He:** The tool converts N\* momentum values from fm<sup>-1</sup> to GeV/c and normalises the distribution, facilitating the visualisation of the N\* momentum distribution within the <sup>3</sup>He nucleus. Additionally, it provides comparative visualisations of proton momentum distributions in <sup>3</sup>He.
+
+These momentum distributions can be used in conjunction with the simulation tools available in the [WASA-Simulations](https://github.com/alex-nuclearboy/WASA-Simulations) repository to perform comprehensive nuclear reaction simulations.
 
 ## Software Dependencies
 
