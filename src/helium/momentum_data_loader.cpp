@@ -35,7 +35,8 @@
 #include <iomanip> // for std::setprecision
 
 const double PI = 3.14159265358979323846;
-const double FM_TO_GEV = 0.19732697; // Conversion factor from fm^-1 to GeV/c
+const double FM_TO_GEV = 0.1973; // Conversion factor from fm^-1 to GeV/c
+const double NORMAL = 0.7163;  // Probability to find a bound deuteron inside the three-body (N∗)-n-p bound state
 
 /**
  * Loads and processes data from a specified input file, converting momentum units and 
@@ -86,7 +87,7 @@ std::pair<float, float> MomentumDataLoader::ParseAndProcessLine(
     double momentum_convers_factor = is_momentum_in_fm ? FM_TO_GEV : 1.0;
     double prob_normaliz_factor = is_prob_normalized 
                                             ? (4.0 * PI) / FM_TO_GEV 
-                                            : (1.0 * PI) / FM_TO_GEV;
+                                            : (4.0 * PI) / NORMAL;
     
     momentum *= momentum_convers_factor;    // Convert momentum if necessary
     probability *= prob_normaliz_factor;    // Normalize probability
