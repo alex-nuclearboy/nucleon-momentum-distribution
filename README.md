@@ -17,8 +17,6 @@ The tool's ability to compare these distributions with proton momentum distribut
 -   **Deuteron Analysis:** Uses Paris [[1](<https://doi.org/10.1016/0370-2693(81)90659-6>)] and CD-Bonn [[2](https://doi.org/10.1103/PhysRevC.63.024001)] nucleon-nucleon potentials for calculations of nucleon momentum distribution in a deuteron, derived from parameters specified in a JSON configuration file.
 -   **N\*(1535) Resonance in <sup>3</sup>He:** The tool converts N\* momentum values from fm<sup>-1</sup> to GeV/c and normalises the distribution, facilitating the visualisation of the N\* momentum distribution within the <sup>3</sup>He nucleus. Additionally, it provides comparative visualisations of proton momentum distributions in <sup>3</sup>He.
 
-These momentum distributions can be used in conjunction with the simulation tools available in the [WASA-Simulations](https://github.com/alex-nuclearboy/WASA-Simulations) repository to perform comprehensive nuclear reaction simulations.
-
 ## Software Dependencies
 
 The codebase is built upon the [ROOT](https://root.cern) data analysis framework, renowned for its powerful processing and visualisation capabilities in particle physics and beyond.
@@ -56,6 +54,8 @@ cd ..
 ## Outputs
 
 The software produces text files detailing nucleon momentum distributions in a deuteron and text files with the N\* resonance's momentum distributions in <sup>3</sup>He, converted from from fm<sup>-1</sup> to GeV/ and normalised. These files are saved in the `data` folder. Graphical outputs are stored as images in the `plots` folder.
+
+These momentum distributions can be used in conjunction with the simulation tools available in the [WASA-Simulations](https://github.com/alex-nuclearboy/WASA-Simulations) repository to perform comprehensive nuclear reaction simulations.
 
 ## References
 
