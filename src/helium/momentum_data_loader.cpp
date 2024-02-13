@@ -66,7 +66,7 @@ void MomentumDataLoader::LoadAndProcessData(
     while (std::getline(input_file, line)) {
         auto [momentum, probability] = ParseAndProcessLine(
             line, is_momentum_in_fm, is_prob_normalized);
-        output_file << std::fixed << std::setprecision(10) << momentum << "\t" 
+        output_file << std::fixed << std::setprecision(7) << momentum << "\t" 
                     << std::setprecision(10) << probability << std::endl;
     }
 }

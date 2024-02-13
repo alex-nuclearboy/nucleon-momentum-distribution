@@ -23,6 +23,7 @@
 #include <iostream>
 #include <cmath>
 #include <vector>
+#include <iomanip> // for std::setprecision
 
 MomentumDistributionCalculator::MomentumDistributionCalculator() {}
 
@@ -110,7 +111,9 @@ void MomentumDistributionCalculator::CalculateDistribution(
     // Normalize and output the momentum distribution
     for (int i = 0; i <= steps; i++) {
         f_p[i] /= norm;
-        out_file << p[i] << "\t" << f_p[i] << std::endl;
+        //out_file << p[i] << "\t" << f_p[i] << std::endl;
+        out_file << std::fixed << std::setprecision(3) << p[i] << "\t" 
+                    << std::setprecision(10) << f_p[i] << std::endl;
     }
     
     std::cout << "Momentum distribution calculation completed and saved to file." 
